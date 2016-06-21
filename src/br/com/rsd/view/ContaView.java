@@ -294,11 +294,13 @@ public class ContaView extends javax.swing.JFrame
                     cContaAtiva.isSelected());
             
             if (estado.getText() == "Inserir"){
-            if (ContaController.persistir(conta) == true) 
+            if (ContaController.inserir(conta) == true) 
+                preencheGrid();
                 JOptionPane.showMessageDialog(this, "Conta salva com sucesso");            
             }else{
                if (ContaController.alterar(conta, codigoConta) == true) 
-                JOptionPane.showMessageDialog(this, "Conta alterada com sucesso"); 
+                   preencheGrid();
+                   JOptionPane.showMessageDialog(this, "Conta alterada com sucesso"); 
             }
            
         } catch (Exception ex) {
@@ -325,7 +327,7 @@ public class ContaView extends javax.swing.JFrame
         cSaldo.setValue(rs2.getFloat("SaldoInicial"));
         cSaldoInicial.setValue(rs2.getFloat("Saldo"));;
         cContaAtiva.setSelected(rs2.getBoolean("ContaAtiva"));
-              
+        preencheGrid();      
         stmt2.close();
     con2.close();
    }   catch (SQLException ex) {
@@ -336,7 +338,19 @@ public class ContaView extends javax.swing.JFrame
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btExcluirActionPerformed
     {//GEN-HEADEREND:event_btExcluirActionPerformed
-        preencheGrid();
+        if (tConta.getSelectedRowCount() == 0){
+            JOptionPane.showMessageDialog(this, "Favor selecionar um Registro");
+        }else     
+        try {
+            if (ContaController.excluir(tConta.getValueAt(tConta.getSelectedRow(), 0).toString()) == true) {
+                preencheGrid(); 
+                JOptionPane.showMessageDialog(this, "Categoria excluida com sucesso");
+            }
+           
+             
+        } catch (Exception ex) {
+            Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btSairActionPerformed

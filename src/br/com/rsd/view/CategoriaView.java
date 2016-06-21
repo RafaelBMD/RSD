@@ -327,7 +327,7 @@ public class CategoriaView extends javax.swing.JFrame
         con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
         
         PreparedStatement stmt2 = con2.prepareStatement(
-        "  SELECT * WHERE c.CodCategoria = " + codigoCat);
+        "  SELECT * FROM Categoria c WHERE c.CodCategoria = " + codigoCat);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet
@@ -351,7 +351,7 @@ public class CategoriaView extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Favor selecionar um Registro");
         }else     
         try {
-            if (CategoriaController.excluir(tCategoria.getValueAt(tCategoria.getX(), 0).toString()) == true) {
+            if (CategoriaController.excluir(tCategoria.getValueAt(tCategoria.getSelectedRow(), 0).toString()) == true) {
                 JOptionPane.showMessageDialog(this, "Categoria excluida com sucesso");
             }
            

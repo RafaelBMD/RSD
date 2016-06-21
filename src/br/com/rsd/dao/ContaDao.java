@@ -6,13 +6,15 @@ import com.mysql.jdbc.Statement;
 
 public class ContaDao
 {
+
+    
     public static boolean inserir(ContaModel conta) throws Exception
     {
         try
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
-            //Statement st2 = conect.getSt();
+         
             st.execute("INSERT INTO conta (DescConta, Saldo, SaldoInicial, ContaAtiva)"
                     + "VALUES ('" + conta.getDescConta() + "',"
                     + conta.getSaldo() + ", "
@@ -48,12 +50,13 @@ public class ContaDao
     {
         try
         {
+            
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             st.execute("UPDATE Conta SET  DescConta = '" + conta.getDescConta() + "'," 
                     + " Saldo = " + conta.getSaldo() + ","
                     + " SaldoInicial = " + conta.getSaldoInicial() + ","
-                    + " ContaAtiva = " + conta.getContaAtiva() + ","
+                    + " ContaAtiva = " + conta.getContaAtiva() 
                     + " WHERE codConta = " +  CodConta);
             
         } catch (Exception e)

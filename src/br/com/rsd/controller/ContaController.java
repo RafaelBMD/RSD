@@ -5,9 +5,9 @@ import br.com.rsd.model.ContaModel;
 
 public class ContaController
 {
-    public static boolean persistir(ContaModel conta) throws Exception
+    public static boolean inserir(ContaModel conta) throws Exception
     {
-        return ContaDao.persistir(conta);
+        return ContaDao.inserir(conta);
     }
 
         public static boolean excluir(String codigo) throws Exception
