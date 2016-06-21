@@ -1,0 +1,194 @@
+package br.com.rsd.view;
+
+public class PrincipalView extends javax.swing.JFrame
+{
+    public PrincipalView()
+    {
+        initComponents();
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        Cadastros = new javax.swing.JComboBox();
+        Movimentacoes = new javax.swing.JComboBox();
+        Relatorios = new javax.swing.JComboBox();
+        CampoValorTotal = new javax.swing.JTextField();
+        ValorTotal = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        Principal = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Cadastros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Cadastros.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cadastros", "Conta", "Categoria" }));
+        Cadastros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastrosActionPerformed(evt);
+            }
+        });
+
+        Movimentacoes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Movimentacoes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Movimentações", "Receita", "Despesa", "Transferência", "Consulta" }));
+        Movimentacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MovimentacoesActionPerformed(evt);
+            }
+        });
+
+        Relatorios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Relatorios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Relatórios", "Escito", "Gráfico" }));
+        Relatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RelatoriosActionPerformed(evt);
+            }
+        });
+
+        CampoValorTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        ValorTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ValorTotal.setText("Valor Total");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/rsd/image/coins.png"))); // NOI18N
+
+        Principal.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
+        Principal.setText("Principal");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Principal)
+                                .addGap(0, 243, Short.MAX_VALUE))
+                            .addComponent(jSeparator1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Cadastros, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(Movimentacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(Relatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(CampoValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(120, 120, 120))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(ValorTotal)
+                        .addGap(190, 190, 190))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(23, Short.MAX_VALUE)
+                        .addComponent(Principal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(ValorTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CampoValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Movimentacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cadastros, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Relatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void CadastrosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CadastrosActionPerformed
+    {//GEN-HEADEREND:event_CadastrosActionPerformed
+        switch (this.Cadastros.getSelectedIndex())
+        { 
+            case 1:
+                ContaView conta = new ContaView();
+                conta.setVisible(true);
+                break;
+            case 2:
+                CategoriaView categoria = new CategoriaView();
+                categoria.setVisible(true);
+                break;
+        }
+    }//GEN-LAST:event_CadastrosActionPerformed
+
+    private void MovimentacoesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_MovimentacoesActionPerformed
+    {//GEN-HEADEREND:event_MovimentacoesActionPerformed
+        switch (this.Movimentacoes.getSelectedIndex())
+        { 
+            case 1:
+                MovimentacoesView receita = new MovimentacoesView();
+                receita.setVisible(true);
+                break;
+            case 2:
+                MovimentacoesView despesa = new MovimentacoesView();
+                despesa.setVisible(true);
+                break;
+            case 3:
+                MovimentacoesView transferencia = new MovimentacoesView();
+                transferencia.setVisible(true);
+                break;
+            case 4:
+                ConsultaView consulta = new ConsultaView();
+                consulta.setVisible(true);
+                break;    
+        }
+    }//GEN-LAST:event_MovimentacoesActionPerformed
+
+    private void RelatoriosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_RelatoriosActionPerformed
+    {//GEN-HEADEREND:event_RelatoriosActionPerformed
+        switch (this.Movimentacoes.getSelectedIndex())
+        { 
+            case 1:
+                //
+            case 2:
+                //
+        }
+    }//GEN-LAST:event_RelatoriosActionPerformed
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox Cadastros;
+    private javax.swing.JTextField CampoValorTotal;
+    private javax.swing.JComboBox Movimentacoes;
+    private javax.swing.JLabel Principal;
+    private javax.swing.JComboBox Relatorios;
+    private javax.swing.JLabel ValorTotal;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    // End of variables declaration//GEN-END:variables
+}
