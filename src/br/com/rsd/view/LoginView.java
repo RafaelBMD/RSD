@@ -1,4 +1,5 @@
 package br.com.rsd.view;
+import br.com.rsd.controller.UsuarioController;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
+import java.util.*;
 
 public class LoginView extends javax.swing.JFrame
 {
@@ -158,13 +160,42 @@ public class LoginView extends javax.swing.JFrame
 
     private void cUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cUsuarioActionPerformed
     {//GEN-HEADEREND:event_cUsuarioActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_cUsuarioActionPerformed
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btEntrarActionPerformed
     {//GEN-HEADEREND:event_btEntrarActionPerformed
-        PrincipalView principal = new PrincipalView();
-        principal.setVisible(true);
+        if(cUsuario.getText().trim().equals("")){
+          JOptionPane.showMessageDialog(null, "Favor Informar o Usuário!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;  
+        }
+        if(cSenha.getText().trim().equals("")){
+          JOptionPane.showMessageDialog(null, "Favor Informar a Senha!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;  
+        }
+        
+        try {
+        Connection con2;
+        con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
+        
+        PreparedStatement stmt2 = con2.prepareStatement(
+        "  SELECT * FROM Usuario u WHERE u.Usuario = '" + cUsuario.getText() +"' AND u.Senha = '"+ cSenha.getText()+"'");
+            // executa um select
+            ResultSet rs2 = stmt2.executeQuery();
+            // itera no ResultSet
+            if (rs2.next()){
+                PrincipalView principal = new PrincipalView();
+                principal.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Senha ou Usuário Incorreto!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+              
+        stmt2.close();
+    con2.close();
+   }   catch (SQLException ex) {
+           Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
+     } 
     }//GEN-LAST:event_btEntrarActionPerformed
 
     private void btCriarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btCriarUsuarioActionPerformed
@@ -173,8 +204,78 @@ public class LoginView extends javax.swing.JFrame
         cadUsuario.setVisible(true);
     }//GEN-LAST:event_btCriarUsuarioActionPerformed
 
+   private static Random rand = new Random();
+   private static char[] letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+
+public static String nomeAleatorio() {
+    StringBuffer sb = new StringBuffer();
+    for (int i = 0; i < 6; i++) {
+        int ch = rand.nextInt (letras.length);
+        sb.append (letras [ch]);
+    }    
+    return sb.toString();    
+}
+    
     private void btAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btAlterarSenhaActionPerformed
     {//GEN-HEADEREND:event_btAlterarSenhaActionPerformed
+        String senhaAleatoria = nomeAleatorio();
+        String  vUsuario = JOptionPane.showInputDialog(null, "Informe o seu Usuário, para alterar a senha!", "Nome do Usuário:", JOptionPane.INFORMATION_MESSAGE); 
+        if (vUsuario == null) {
+           return;
+        
+            }
+        
+        try {
+        Connection con2;
+        con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
+        
+        
+        PreparedStatement stmt2 = con2.prepareStatement(
+        "  SELECT u.* FROM Usuario u WHERE u.Usuario = '" + vUsuario+"'");
+            // executa um select
+            ResultSet rs2 = stmt2.executeQuery();
+            // itera no ResultSet
+           
+            
+            if (rs2.next()){
+
+                SimpleEmail email = new SimpleEmail();
+
+                try {
+                email.setDebug(true);
+                email.setHostName("smtp.gmail.com");
+                email.setAuthentication("rafaelbmd3@gmail.com","domingos123");
+                email.setSSL(true);
+                email.addTo(rs2.getString("email")); //pode ser qualquer um email
+                email.setFrom("rafaelbmd3@gmail.com"); //aqui necessita ser o email que voce fara a autenticacao
+                email.setSubject("Alteração de senha RSD!");
+                email.setMsg("Conforme solicitado pelo senhor(a) "+rs2.getString("Nome")+ " Foi alterado a sua senha para "+ senhaAleatoria);
+                email.send();
+
+                } catch (EmailException e) {
+
+                System.out.println(e.getMessage());
+
+                }
+                try {
+                    if (UsuarioController.alterarSenha(senhaAleatoria, vUsuario) == true) {
+                        JOptionPane.showMessageDialog(this, "Senha alterada com sucesso! Favor verificar sua nova senha no email "+rs2.getString("email"));
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuário Incorreto!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+              
+        stmt2.close();
+    con2.close();
+   }   catch (SQLException ex) {
+           Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
+     }
+        
         
     }//GEN-LAST:event_btAlterarSenhaActionPerformed
 

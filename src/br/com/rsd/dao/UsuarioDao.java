@@ -35,8 +35,26 @@ public class UsuarioDao
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
-            st.execute("DELETE FROM usuario WHERE usuario = " +  vUsuario);
+            st.execute("DELETE FROM usuario WHERE usuario = '" +  vUsuario + "'");
 
+        } catch (Exception e)
+        {
+            System.out.println("Problemas Ocorreram");
+            e.printStackTrace();
+            throw new Exception("Erro ao Salvar dados!");
+        }
+        return true;
+    }
+    
+    public static boolean alterarSenha(String senha, String vUsuario) throws Exception
+    {
+        try
+        {
+            ConexaoPersistencia conect = new ConexaoPersistencia();
+            Statement st = conect.getSt();
+            st.execute("UPDATE Usuario SET senha = '" + senha + "'"
+                    + " WHERE usuario = '" +  vUsuario +"'");
+            
         } catch (Exception e)
         {
             System.out.println("Problemas Ocorreram");
@@ -53,10 +71,10 @@ public class UsuarioDao
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             st.execute("UPDATE Usuario SET  usuario = '" + usuario.getUsuario() + "'," 
-                    + " nome = " + usuario.getNome() + ","
-                    + " senha = " + usuario.getSenha() + ","
-                    + " email = " + usuario.getEmail()
-                    + " WHERE usuario = " +  vUsuario);
+                    + " nome = '" + usuario.getNome() + "',"
+                    + " senha = '" + usuario.getSenha() + "',"
+                    + " email = '" + usuario.getEmail() + "',"
+                    + " WHERE usuario = '" +  vUsuario+ "',");
             
         } catch (Exception e)
         {
