@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioConta" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1e130414-82ac-4b24-81ef-ed9fc7bf8db8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="26ded366-6ae7-4412-8ccd-dfdd37032e94"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Conta]]>
+	</queryString>
+	<field name="CodConta" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DescConta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Saldo" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SaldoInicial" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ContaAtiva" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="CodConta">
+		<groupExpression><![CDATA[$F{CodConta}]]></groupExpression>
+	</group>
+	<group name="DescConta">
+		<groupExpression><![CDATA[$F{DescConta}]]></groupExpression>
+	</group>
+	<group name="Saldo">
+		<groupExpression><![CDATA[$F{Saldo}]]></groupExpression>
+	</group>
+	<group name="SaldoInicial">
+		<groupExpression><![CDATA[$F{SaldoInicial}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="152" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="150" uuid="f37a5576-1ebc-4c0b-8831-479e9a6f76d6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="80" width="555" height="60" backcolor="#660000" uuid="acea9a43-0850-4527-99ed-b740ff7fdb2d"/>
+			</rectangle>
+			<textField>
+				<reportElement x="100" y="38" width="284" height="41" uuid="947ae243-b73c-4205-9b93-2e225b8f9480"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Gautami" size="20" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Relatório de contas]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="137" width="555" height="15" forecolor="#000000" backcolor="#000000" uuid="e521082d-f073-4c15-9ca1-8d594c3c87f4"/>
+			</rectangle>
+			<image>
+				<reportElement x="15" y="15" width="64" height="64" uuid="15fa83aa-813c-42dc-8202-06258be7a40e"/>
+				<imageExpression><![CDATA["C:\\Users\\Particular\\Desktop\\UFV - Denilson\\SIN 143 - Laboratório de Programação\\Projeto\\Icones\\cash-register.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="20" uuid="72c0454c-47fc-4fc2-9968-f6037b68e460"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CodConta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="20" uuid="93839f42-a1ef-4e8a-afd4-8ef8536df9ca"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DescConta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="20" uuid="7696db7e-f170-489a-815d-1a210c20b61c"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="20" uuid="dc1a932f-ecbf-4593-b855-798e2c657630"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SaldoInicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="20" uuid="0d34e9ce-8976-4860-abf6-d2d89458ed8e"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ContaAtiva]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="150" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="20" uuid="9201d7c1-36cb-47e4-8214-27eacdec2120"/>
+				<textFieldExpression><![CDATA[$F{CodConta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="20" uuid="2093870f-45bb-48de-964f-d61293514086"/>
+				<textFieldExpression><![CDATA[$F{DescConta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="20" uuid="c9063255-f770-4906-872e-5d5a05555559"/>
+				<textFieldExpression><![CDATA[$F{Saldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="20" uuid="22ac2b4b-be31-479e-9a2e-9c1eef41c30e"/>
+				<textFieldExpression><![CDATA[$F{SaldoInicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20" uuid="18dfbc06-8eae-4a46-97bd-9bfe6496d1a7"/>
+				<textFieldExpression><![CDATA[$F{ContaAtiva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="195" y="0" width="79" height="20" uuid="542361e4-7e13-4571-a4d6-8baea1515016"/>
+				<textElement textAlignment="Right">
+					<font fontName="Bell MT" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="274" y="0" width="59" height="20" uuid="f4e7ddc2-be5f-41a0-ab4f-1e103ad59e49"/>
+				<textElement>
+					<font fontName="Bell MT" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioCategoria" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d356530-b4e8-4c2b-af32-4737d444b286">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="20"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Categoria]]>
+	</queryString>
+	<field name="CodCategoria" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DescCategoria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TipoCategoria" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CategoriaAtiva" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="CodCategoria">
+		<groupExpression><![CDATA[$F{CodCategoria}]]></groupExpression>
+	</group>
+	<group name="DescCategoria">
+		<groupExpression><![CDATA[$F{DescCategoria}]]></groupExpression>
+	</group>
+	<group name="TipoCategoria">
+		<groupExpression><![CDATA[$F{TipoCategoria}]]></groupExpression>
+	</group>
+	<group name="Cor">
+		<groupExpression><![CDATA[$F{Cor}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="153" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="150" uuid="6c2514e3-70ac-4f95-b153-134106a18c9e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="80" width="555" height="60" backcolor="#009999" uuid="4eb37bb4-321d-4d53-9d88-60fad842f668"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="137" width="555" height="15" backcolor="#000000" uuid="dd3ebc0e-985f-4394-a414-6a7b6ceaf743"/>
+			</rectangle>
+			<image>
+				<reportElement x="15" y="15" width="64" height="64" uuid="cee1bbf6-c068-4460-9be9-9e75e493c333"/>
+				<imageExpression><![CDATA["C:\\Users\\Particular\\Desktop\\UFV - Denilson\\SIN 143 - Laboratório de Programação\\Projeto\\Icones\\tag.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="100" y="38" width="284" height="41" uuid="e962c70c-d6ca-477d-b3d2-96bbebb76c56"/>
+				<textElement>
+					<font fontName="Gautami" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Relatório de Categorias]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="20" uuid="558da13d-68da-40c4-a598-891bf6989d56"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CodCategoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="20" uuid="d6aa3b22-767b-4649-b9e8-41508f5d4050"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DescCategoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="20" uuid="09b3799a-1970-45a4-85a3-a3acc40937f3"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TipoCategoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="20" uuid="9f4816a4-d349-434b-bbac-c72904119a8b"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="20" uuid="a77007d8-bcdf-4395-bee3-b046e0f308c8"/>
+				<textElement>
+					<font fontName="Bell MT" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CategoriaAtiva]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="20" uuid="5be81dde-46bb-48ee-9d72-9bd3c5357c11"/>
+				<textFieldExpression><![CDATA[$F{CodCategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="20" uuid="a88dd502-fc36-44e8-8082-235857ac7b8e"/>
+				<textFieldExpression><![CDATA[$F{DescCategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="20" uuid="c9cfde5e-c330-4294-99ef-e720f872a264"/>
+				<textFieldExpression><![CDATA[$F{TipoCategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="20" uuid="0eaabd78-ecc9-49de-aeca-601c72a2771a"/>
+				<textFieldExpression><![CDATA[$F{Cor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20" uuid="48103796-6661-4ae3-90b3-d7a1eb23ed1a"/>
+				<textFieldExpression><![CDATA[$F{CategoriaAtiva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="195" y="0" width="79" height="20" uuid="cb882758-a42e-4cf7-ad54-d238a955fb74"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="274" y="0" width="40" height="20" uuid="a5172384-6caf-4082-a92e-90d564b77211"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
