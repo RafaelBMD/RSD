@@ -51,6 +51,11 @@ public class CategoriaView extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         Categoria = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -240,6 +245,26 @@ public class CategoriaView extends javax.swing.JFrame
         Categoria.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
         Categoria.setText("Categoria");
 
+        jMenu1.setText("Arquivo");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Registro");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Relatório");
+
+        jMenuItem1.setText("Relação");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -370,6 +395,16 @@ public class CategoriaView extends javax.swing.JFrame
         preencheGrid();
     }//GEN-LAST:event_formComponentShown
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        try {
+            if (CategoriaController.relatorio() == true) {
+                JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
 private void preencheGrid()                                          
     {                                              
        try {
@@ -424,6 +459,11 @@ private void preencheGrid()
     private javax.swing.JComboBox cEscolhaTipo;
     private javax.swing.JLabel estado;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

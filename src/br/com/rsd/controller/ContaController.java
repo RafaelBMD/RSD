@@ -20,8 +20,8 @@ public class ContaController
         return ContaDao.alterar(categoria,codigo);
     }
     
-    public static boolean relatorio(ContaModel conta) throws Exception
+    public static boolean relatorio() throws Exception
     {
-        return ContaDao.relatorio(conta);
+        return ContaDao.relatorio();
     }
 }

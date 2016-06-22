@@ -20,8 +20,8 @@ public class CategoriaController
         return CategoriaDao.alterar(categoria,codigo);
     }
     
-    public static boolean relatorio(CategoriaModel categoria) throws Exception
+    public static boolean relatorio() throws Exception
     {
-        return CategoriaDao.relatorio(categoria);
+        return CategoriaDao.relatorio();
     }
 }

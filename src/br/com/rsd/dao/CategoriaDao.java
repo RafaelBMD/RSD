@@ -3,8 +3,13 @@ package br.com.rsd.dao;
 import br.com.rsd.model.CategoriaModel;
 import br.com.rsd.persistencia.ConexaoPersistencia;
 import com.mysql.jdbc.Statement;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class CategoriaDao
 {
@@ -66,20 +71,28 @@ public class CategoriaDao
         }
         return true;
     }
-    public static boolean relatorio(CategoriaModel categoria) throws Exception
+    public static boolean relatorio() throws Exception
     {
         try
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
-            //Statement st2 = conect.getSt();
+            
             st.execute("SELECT  * FROM Categoria");
+            JRResultSetDataSource relResult = new JRResultSetDataSource(conect.getSt().getResultSet());
+            JasperPrint jpPrint = JasperFillManager.fillReport("",new HashMap(), relResult);
+            
+            JasperViewer jv = new JasperViewer(jpPrint, false);
+            jv.setVisible(true);
+            jv.toFront();
+            
+            
         } catch (Exception e)
         {
             System.out.println("Problemas Ocorreram");
             e.printStackTrace();
             throw new Exception("Erro ao Salvar Dados!");
         }
-        return false;
+        return true;
     }
 }
