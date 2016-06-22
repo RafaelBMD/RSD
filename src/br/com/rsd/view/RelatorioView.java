@@ -16,6 +16,11 @@ import br.com.rsd.model.TransferenciaModel;
 import br.com.rsd.persistencia.ConexaoPersistencia;
 import com.mysql.jdbc.Statement;
 import static groovy.ui.text.FindReplaceUtility.dispose;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -73,6 +78,12 @@ public class RelatorioView extends javax.swing.JPanel {
         cDataF = new com.toedter.calendar.JDateChooser();
         cCategoria = new javax.swing.JComboBox<>();
         jContaDestino1 = new javax.swing.JLabel();
+
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/rsd/image/money-bag.png"))); // NOI18N
 
@@ -405,6 +416,40 @@ public class RelatorioView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cDataIFocusLost
 
+        public void preencheCampo(){
+        cContaDestino.removeAllItems();
+        cContaOrigem.removeAllItems();
+       
+           jContaDestino.setName("Conta de Destino");     
+       try {
+        Connection con;
+        Connection con2;
+        con = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
+        con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
+        
+        PreparedStatement stmt = con.prepareStatement("select * from Categoria");
+        PreparedStatement stmt2 = con2.prepareStatement("select * from Conta");
+         // executa um select
+         ResultSet rs = stmt.executeQuery();
+         ResultSet rs2 = stmt2.executeQuery();      
+         // itera no ResultSet
+         while (rs.next()) {
+           cContaDestino.addItem(rs.getString("CodCategoria") + "-" +rs.getString("DescCategoria"));
+         }
+
+         while (rs2.next()) {
+          cContaDestino.addItem(rs2.getString("CodConta") + "-" +rs2.getString("DescConta"));
+          cContaOrigem.addItem(rs2.getString("CodConta") + "-" +rs2.getString("DescConta"));
+         }
+        stmt.close();
+        con.close();
+        stmt2.close();
+        con2.close();
+   }   catch (SQLException ex) {
+           Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
+     }                  
+    }
+    
     private void cDataIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cDataIMouseClicked
 
     }//GEN-LAST:event_cDataIMouseClicked
@@ -416,6 +461,10 @@ public class RelatorioView extends javax.swing.JPanel {
     private void cDataFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cDataFMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_cDataFMouseClicked
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        preencheCampo();
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

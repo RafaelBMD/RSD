@@ -80,7 +80,7 @@ public class CategoriaDao
             
             st.execute("SELECT  * FROM Categoria");
             JRResultSetDataSource relResult = new JRResultSetDataSource(conect.getSt().getResultSet());
-            JasperPrint jpPrint = JasperFillManager.fillReport("",new HashMap(), relResult);
+            JasperPrint jpPrint = JasperFillManager.fillReport("iReports/RelatorioCategoria.jasper",new HashMap(), relResult);
             
             JasperViewer jv = new JasperViewer(jpPrint, false);
             jv.setVisible(true);

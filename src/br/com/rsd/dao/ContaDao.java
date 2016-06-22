@@ -81,7 +81,7 @@ public class ContaDao
             
             st.execute("SELECT  * FROM Conta");
             JRResultSetDataSource relResult = new JRResultSetDataSource(conect.getSt().getResultSet());
-            JasperPrint jpPrint = JasperFillManager.fillReport("",new HashMap(), relResult);
+            JasperPrint jpPrint = JasperFillManager.fillReport("iReports/RelatorioConta.jasper",new HashMap(), relResult);
             
             JasperViewer jv = new JasperViewer(jpPrint, false);
             jv.setVisible(true);

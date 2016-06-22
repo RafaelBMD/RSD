@@ -60,6 +60,11 @@ public class MovimentacoesView extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         cDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,7 +331,7 @@ public class MovimentacoesView extends javax.swing.JFrame
 
     public void preencheCampo(Integer tipo){
     cContaDestino.removeAllItems();
-        if (tipo == 2)
+        if (tipo == 0)
         { 
            jContaDestino.setName("Conta de Destino");     
        try {
@@ -410,6 +415,10 @@ public class MovimentacoesView extends javax.swing.JFrame
     private void cValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cValorKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_cValorKeyTyped
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        preencheCampo(2);
+    }//GEN-LAST:event_formComponentShown
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

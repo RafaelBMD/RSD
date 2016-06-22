@@ -166,11 +166,11 @@ public class LoginView extends javax.swing.JFrame
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btEntrarActionPerformed
     {//GEN-HEADEREND:event_btEntrarActionPerformed
         if(cUsuario.getText().trim().equals("")){
-          JOptionPane.showMessageDialog(null, "Favor Informar o Usuário!", "ERRO", JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null, "Favor informar o usuário!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 return;  
         }
         if(cSenha.getText().trim().equals("")){
-          JOptionPane.showMessageDialog(null, "Favor Informar a Senha!", "ERRO", JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null, "Favor informar a senha!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 return;  
         }
         
@@ -187,7 +187,7 @@ public class LoginView extends javax.swing.JFrame
                 PrincipalView principal = new PrincipalView();
                 principal.setVisible(true);
             }else{
-                JOptionPane.showMessageDialog(null, "Senha ou Usuário Incorreto!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Senha ou usuário incorreto!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 return;
             }
               
@@ -219,7 +219,7 @@ public static String nomeAleatorio() {
     private void btAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btAlterarSenhaActionPerformed
     {//GEN-HEADEREND:event_btAlterarSenhaActionPerformed
         String senhaAleatoria = nomeAleatorio();
-        String  vUsuario = JOptionPane.showInputDialog(null, "Informe o seu Usuário, para alterar a senha!", "Nome do Usuário:", JOptionPane.INFORMATION_MESSAGE); 
+        String  vUsuario = JOptionPane.showInputDialog(null, "Informe o seu usuário, para alterar a senha!", "Nome do Usuário:", JOptionPane.INFORMATION_MESSAGE); 
         if (vUsuario == null) {
            return;
         
