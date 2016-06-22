@@ -14,12 +14,12 @@ public class PrincipalView extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         Cadastros = new javax.swing.JComboBox();
         Movimentacoes = new javax.swing.JComboBox();
-        Relatorios = new javax.swing.JComboBox();
         CampoValorTotal = new javax.swing.JTextField();
         ValorTotal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         Principal = new javax.swing.JLabel();
+        btRelatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,14 +39,6 @@ public class PrincipalView extends javax.swing.JFrame
             }
         });
 
-        Relatorios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Relatorios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Relatórios", "Escito", "Gráfico" }));
-        Relatorios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RelatoriosActionPerformed(evt);
-            }
-        });
-
         CampoValorTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         ValorTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -56,6 +48,14 @@ public class PrincipalView extends javax.swing.JFrame
 
         Principal.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
         Principal.setText("Principal");
+
+        btRelatorio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btRelatorio.setText("Relatório");
+        btRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRelatorioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,8 +76,8 @@ public class PrincipalView extends javax.swing.JFrame
                         .addComponent(Cadastros, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(Movimentacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(Relatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -94,7 +94,7 @@ public class PrincipalView extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(23, Short.MAX_VALUE)
+                        .addContainerGap(17, Short.MAX_VALUE)
                         .addComponent(Principal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,13 +106,14 @@ public class PrincipalView extends javax.swing.JFrame
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Movimentacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Cadastros, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Relatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(97, 97, 97))
+                    .addComponent(btRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
+
+        btRelatorio.getAccessibleContext().setAccessibleName("btRelatorio");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,24 +170,18 @@ public class PrincipalView extends javax.swing.JFrame
         }
     }//GEN-LAST:event_MovimentacoesActionPerformed
 
-    private void RelatoriosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_RelatoriosActionPerformed
-    {//GEN-HEADEREND:event_RelatoriosActionPerformed
-        switch (this.Movimentacoes.getSelectedIndex())
-        { 
-            case 1:
-                //
-            case 2:
-                //
-        }
-    }//GEN-LAST:event_RelatoriosActionPerformed
+    private void btRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioActionPerformed
+        RelatorioView rel = new RelatorioView();
+                rel.setVisible(true);
+    }//GEN-LAST:event_btRelatorioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Cadastros;
     private javax.swing.JTextField CampoValorTotal;
     private javax.swing.JComboBox Movimentacoes;
     private javax.swing.JLabel Principal;
-    private javax.swing.JComboBox Relatorios;
     private javax.swing.JLabel ValorTotal;
+    private javax.swing.JButton btRelatorio;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
