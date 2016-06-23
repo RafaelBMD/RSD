@@ -7,9 +7,9 @@ import br.com.rsd.model.TransferenciaModel;
 
 public class ReceitaController
 {
-    public static boolean inserir(ReceitaModel receita) throws Exception
+    public static boolean inserir(ReceitaModel receita, int vUsuCodigo) throws Exception
     {
-        return ReceitaDao.inserir(receita);
+        return ReceitaDao.inserir(receita, vUsuCodigo);
     }
 
     public static boolean excluir(String codigo) throws Exception

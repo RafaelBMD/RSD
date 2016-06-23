@@ -5,9 +5,9 @@ import br.com.rsd.model.TransferenciaModel;
 
 public class TransferenciaController
 {
-    public static boolean inserir(TransferenciaModel transferencia) throws Exception
+    public static boolean inserir(TransferenciaModel transferencia, int vUsuCodigo) throws Exception
     {
-        return TransferenciaDao.inserir(transferencia);
+        return TransferenciaDao.inserir(transferencia, vUsuCodigo);
     }
 public static boolean excluir(String codigo) throws Exception
     {

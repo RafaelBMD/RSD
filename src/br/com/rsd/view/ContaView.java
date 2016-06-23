@@ -314,18 +314,19 @@ public class ContaView extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btSalvarActionPerformed
         try {
             
-            ContaModel conta = new ContaModel( 
+            ContaModel conta = new ContaModel(
+                    vUsuCodigo, 
                     cDescricao.getText(),
                     Float.parseFloat(cSaldo.getText().replace(",", ".")),
                     Float.parseFloat(cSaldoInicial.getText().replace(",", ".")),
                     cContaAtiva.isSelected());
             
             if (estado.getText() == "Inserir"){
-            if (ContaController.inserir(conta) == true) 
+            if (ContaController.inserir(conta,vUsuCodigo) == true) 
                 preencheGrid();
                 JOptionPane.showMessageDialog(this, "Conta salva com sucesso");            
             }else{
-               if (ContaController.alterar(conta, codigoConta) == true) 
+               if (ContaController.alterar(conta, codigoConta,vUsuCodigo) == true) 
                    preencheGrid();
                    JOptionPane.showMessageDialog(this, "Conta alterada com sucesso"); 
             }
@@ -369,7 +370,7 @@ public class ContaView extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Favor selecionar um Registro");
         }else     
         try {
-            if (ContaController.excluir(tConta.getValueAt(tConta.getSelectedRow(), 0).toString()) == true) {
+            if (ContaController.excluir(tConta.getValueAt(tConta.getSelectedRow(), 0).toString(),vUsuCodigo) == true) {
                 preencheGrid(); 
                 JOptionPane.showMessageDialog(this, "Categoria excluida com sucesso");
             }
@@ -420,7 +421,7 @@ public class ContaView extends javax.swing.JFrame
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try {
-            if (ContaController.relatorio() == true) {
+            if (ContaController.relatorio(vUsuCodigo) == true) {
             }
         } catch (Exception ex) {
             Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);

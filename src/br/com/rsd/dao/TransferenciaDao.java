@@ -6,15 +6,16 @@ import com.mysql.jdbc.Statement;
 
 public class TransferenciaDao
 {
-    public static boolean inserir(TransferenciaModel transferencia) throws Exception
+    public static boolean inserir(TransferenciaModel transferencia, int vUsuCodigo) throws Exception
     {
         try
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             Statement st2 = conect.getSt();
-            st.execute("INSERT INTO Movimentacao (CodConta, TipoMovimentacao, DescMovimentacao, Localizacao, Valor, DataMovimentacao)"
-                    + " VALUES (" + transferencia.getCodConta() + ", "
+            st.execute("INSERT INTO Movimentacao (usuCodigo, CodConta, TipoMovimentacao, DescMovimentacao, Localizacao, Valor, DataMovimentacao)"
+                    + " VALUES (" + vUsuCodigo + ", "
+                    + transferencia.getCodConta() + ", "
                     + transferencia.getTipoMovimentacao() + ", '"
                     + transferencia.getDescMovimentacao() + "', '"
                     + transferencia.getLocalizacao() + "', "

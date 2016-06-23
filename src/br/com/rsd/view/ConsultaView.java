@@ -270,7 +270,8 @@ public class ConsultaView extends javax.swing.JFrame
         "     FROM movimentacao m\n" +
         "	 LEFT JOIN Despesa d on d.codMovimentacao = m.Codmovimentacao\n" +
         "	 LEFT JOIN Receita r on r.codMovimentacao = m.Codmovimentacao\n" +
-        "	 LEFT JOIN Transferencia t on t.codMovimentacao = m.Codmovimentacao");
+        "	 LEFT JOIN Transferencia t on t.codMovimentacao = m.Codmovimentacao" + 
+        "     Where m.usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet

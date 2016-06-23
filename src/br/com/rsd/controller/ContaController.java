@@ -5,23 +5,23 @@ import br.com.rsd.model.ContaModel;
 
 public class ContaController
 {
-    public static boolean inserir(ContaModel conta) throws Exception
+    public static boolean inserir(ContaModel conta, int vUsuCodigo) throws Exception
     {
-        return ContaDao.inserir(conta);
+        return ContaDao.inserir(conta,vUsuCodigo);
     }
 
-        public static boolean excluir(String codigo) throws Exception
+        public static boolean excluir(String codigo, int vUsuCodigo) throws Exception
     {
-        return ContaDao.excluir(codigo);
+        return ContaDao.excluir(codigo, vUsuCodigo);
     }
     
-    public static boolean alterar(ContaModel categoria, String codigo) throws Exception
+    public static boolean alterar(ContaModel categoria, String codigo, int vUsuCodigo) throws Exception
     {
-        return ContaDao.alterar(categoria,codigo);
+        return ContaDao.alterar(categoria,codigo,vUsuCodigo);
     }
     
-    public static boolean relatorio() throws Exception
+    public static boolean relatorio(int vUsuCodigo) throws Exception
     {
-        return ContaDao.relatorio();
+        return ContaDao.relatorio(vUsuCodigo);
     }
 }

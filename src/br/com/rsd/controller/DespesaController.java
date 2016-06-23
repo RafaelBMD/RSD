@@ -5,9 +5,9 @@ import br.com.rsd.model.DespesaModel;
 
 public class DespesaController
 {
-    public static boolean inserir(DespesaModel despesa) throws Exception
+    public static boolean inserir(DespesaModel despesa, int vUsuCodigo) throws Exception
     {
-        return DespesaDao.inserir(despesa);
+        return DespesaDao.inserir(despesa, vUsuCodigo);
     }
 
     public static boolean excluir(String codigo) throws Exception

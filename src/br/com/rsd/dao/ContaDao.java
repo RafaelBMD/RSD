@@ -10,18 +10,17 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class ContaDao
-{
-
-    
-    public static boolean inserir(ContaModel conta) throws Exception
+{    
+    public static boolean inserir(ContaModel conta, int vUsuCodigo) throws Exception
     {
         try
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
          
-            st.execute("INSERT INTO conta (DescConta, Saldo, SaldoInicial, ContaAtiva)"
-                    + "VALUES ('" + conta.getDescConta() + "',"
+            st.execute("INSERT INTO conta (usuCodigo, DescConta, Saldo, SaldoInicial, ContaAtiva)"
+                    + "VALUES (" + vUsuCodigo + ",'" 
+                    + conta.getDescConta() + "',"
                     + conta.getSaldo() + ", "
                     + conta.getSaldoInicial() + ", "
                     + conta.getContaAtiva() + "); ");
@@ -34,13 +33,13 @@ public class ContaDao
         }
         return false;
     }
-    public static boolean excluir(String codigo) throws Exception
+    public static boolean excluir(String codigo, int vUsuCodigo) throws Exception
     {
         try
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
-            st.execute("DELETE FROM Conta WHERE codConta = " +  codigo);
+            st.execute("DELETE FROM Conta WHERE codConta = " +  codigo + " and usuCodigo = " + vUsuCodigo);
 
         } catch (Exception e)
         {
@@ -51,7 +50,7 @@ public class ContaDao
         return true;
     }
     
-    public static boolean alterar(ContaModel conta, String CodConta) throws Exception
+    public static boolean alterar(ContaModel conta, String CodConta, int vUsuCodigo) throws Exception
     {
         try
         {
@@ -62,7 +61,7 @@ public class ContaDao
                     + " Saldo = " + conta.getSaldo() + ","
                     + " SaldoInicial = " + conta.getSaldoInicial() + ","
                     + " ContaAtiva = " + conta.getContaAtiva() 
-                    + " WHERE codConta = " +  CodConta);
+                    + " WHERE codConta = " +  CodConta + " and usuCodigo = " + vUsuCodigo);
             
         } catch (Exception e)
         {
@@ -72,14 +71,14 @@ public class ContaDao
         }
         return true;
     }
-    public static boolean relatorio() throws Exception
+    public static boolean relatorio(int vUsuCodigo) throws Exception
     {
         try
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             
-            st.execute("SELECT  * FROM Conta");
+            st.execute("SELECT  * FROM Conta usuCodigo = " + vUsuCodigo);
             JRResultSetDataSource relResult = new JRResultSetDataSource(conect.getSt().getResultSet());
             JasperPrint jpPrint = JasperFillManager.fillReport("iReports/RelatorioConta.jasper",new HashMap(), relResult);
             

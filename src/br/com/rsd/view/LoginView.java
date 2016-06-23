@@ -166,6 +166,7 @@ public class LoginView extends javax.swing.JFrame
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btEntrarActionPerformed
     {//GEN-HEADEREND:event_btEntrarActionPerformed
+        int vUsuCodigo;
         if(cUsuario.getText().trim().equals("")){
           JOptionPane.showMessageDialog(null, "Favor informar o usuário!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 return;  
@@ -184,8 +185,9 @@ public class LoginView extends javax.swing.JFrame
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet
-            if (rs2.next()){                
-                PrincipalView principal = new PrincipalView(rs2.getInt("usuCodigo"));
+            if (rs2.next()){   
+                vUsuCodigo = rs2.getInt("usuCodigo");
+                PrincipalView principal = new PrincipalView(vUsuCodigo);
                 principal.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Senha ou usuário incorreto!", "ERRO", JOptionPane.ERROR_MESSAGE);

@@ -23,9 +23,10 @@ import static java.lang.System.exit;
 public class CategoriaView extends javax.swing.JFrame
 {
     String codigoCat;
-    
-    public CategoriaView()
+    int vUsuCodigo;
+    public CategoriaView(int vUsuCodigo)
     {
+        this.vUsuCodigo = vUsuCodigo;
         initComponents();
     }
 
@@ -302,17 +303,18 @@ public class CategoriaView extends javax.swing.JFrame
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SalvarActionPerformed
     {//GEN-HEADEREND:event_SalvarActionPerformed
        try {
-            CategoriaModel categoria = new CategoriaModel( 
+            CategoriaModel categoria = new CategoriaModel(
+                    vUsuCodigo,
                     cDescricao.getText(),
                     cEscolhaTipo.getSelectedIndex(),
                     cCor.getSelectedIndex(),
                     cCategoriaAtiva.isSelected());
             if (estado.getText() == "Inserir"){
-            if (CategoriaController.inserir(categoria) == true) {
+            if (CategoriaController.inserir(categoria, vUsuCodigo) == true) {
                 JOptionPane.showMessageDialog(this, "Categoria salva com sucesso");
             }           
             }else{
-            if (CategoriaController.alterar(categoria, codigoCat) == true) {
+            if (CategoriaController.alterar(categoria, codigoCat, vUsuCodigo) == true) {
                 JOptionPane.showMessageDialog(this, "Categoria alterada com sucesso");
             }}
           preencheGrid();   
@@ -352,7 +354,7 @@ public class CategoriaView extends javax.swing.JFrame
         con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
         
         PreparedStatement stmt2 = con2.prepareStatement(
-        "  SELECT * FROM Categoria c WHERE c.CodCategoria = " + codigoCat);
+        "  SELECT * FROM Categoria c WHERE c.CodCategoria = " + codigoCat + " and c.usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet
@@ -376,7 +378,7 @@ public class CategoriaView extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Favor selecionar um Registro");
         }else     
         try {
-            if (CategoriaController.excluir(tCategoria.getValueAt(tCategoria.getSelectedRow(), 0).toString()) == true) {
+            if (CategoriaController.excluir(tCategoria.getValueAt(tCategoria.getSelectedRow(), 0).toString(), vUsuCodigo) == true) {
                 JOptionPane.showMessageDialog(this, "Categoria excluida com sucesso");
             }
            
@@ -397,7 +399,7 @@ public class CategoriaView extends javax.swing.JFrame
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try {
-            if (CategoriaController.relatorio() == true) {
+            if (CategoriaController.relatorio(vUsuCodigo) == true) {
             }
         } catch (Exception ex) {
             Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);
@@ -419,7 +421,7 @@ private void preencheGrid()
         "  ELSE 'Despesa' \n" +
         "  END Tipo,\n" +
         "  c.Cor ,\n" + 
-        "  c.CategoriaAtiva FROM Categoria c ");
+        "  c.CategoriaAtiva FROM Categoria c where c.usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet

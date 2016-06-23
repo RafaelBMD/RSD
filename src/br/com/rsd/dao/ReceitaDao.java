@@ -18,15 +18,16 @@ import javax.swing.JOptionPane;
 public class ReceitaDao
 {
     
-    public static boolean inserir(ReceitaModel receita) throws Exception
+    public static boolean inserir(ReceitaModel receita, int vUsuCodigo) throws Exception
     {
         try
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             Statement st2 = conect.getSt();
-            st.execute("INSERT INTO Movimentacao (CodConta, TipoMovimentacao, DescMovimentacao, Localizacao, Valor, DataMovimentacao)"
-                    + " VALUES (" + receita.getCodConta() + ", "
+            st.execute("INSERT INTO Movimentacao (usuCodigo, CodConta, TipoMovimentacao, DescMovimentacao, Localizacao, Valor, DataMovimentacao)"
+                    + " VALUES (" + vUsuCodigo +", " 
+                    + receita.getCodConta() + ", "
                     + receita.getTipoMovimentacao() + ", '"
                     + receita.getDescMovimentacao() + "', '"
                     + receita.getLocalizacao() + "', "

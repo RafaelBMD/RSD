@@ -13,15 +13,16 @@ import javax.swing.JOptionPane;
 
 public class DespesaDao
 {
-    public static boolean inserir(DespesaModel despesa) throws Exception
+    public static boolean inserir(DespesaModel despesa, int vUsuCodigo) throws Exception
     {
         try
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             Statement st2 = conect.getSt();
-            st.execute("INSERT INTO Movimentacao (CodConta, TipoMovimentacao, DescMovimentacao, Localizacao, Valor, DataMovimentacao)"
-                    + "VALUES (" + despesa.getCodConta() + ", "
+            st.execute("INSERT INTO Movimentacao (usuCodigo, CodConta, TipoMovimentacao, DescMovimentacao, Localizacao, Valor, DataMovimentacao)"
+                    + "VALUES (" + vUsuCodigo + ", "
+                    + despesa.getCodConta() + ", "
                     + despesa.getTipoMovimentacao() + ", '"
                     + despesa.getDescMovimentacao() + "', '"
                     + despesa.getLocalizacao() + "', "
@@ -48,7 +49,7 @@ public class DespesaDao
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             Statement st2 = conect.getSt();
-            st.execute("DELETE FROM Despesa WHERE codDespesa = " +  codigo);
+            st.execute("DELETE FROM Despesa WHERE codMovimentacao = " +  codigo);
             
             st2.execute("DELETE FROM Movimentacao WHERE codMovimentacao = " +  codigo);
             

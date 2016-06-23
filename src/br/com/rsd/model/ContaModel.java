@@ -2,6 +2,7 @@ package br.com.rsd.model;
 
 public class ContaModel
 {
+    private int vUsuCodigo;
     private String descConta;
     private float saldo;
     private float saldoInicial;
@@ -9,8 +10,9 @@ public class ContaModel
 
     public ContaModel(){} //Construtor padrão
 
-    public ContaModel(String descConta, float saldo, float saldoInicial, boolean contaAtiva)
+    public ContaModel(int vUsuCodigo, String descConta, float saldo, float saldoInicial, boolean contaAtiva)
     {
+        this.vUsuCodigo = vUsuCodigo;
         this.descConta = descConta;
         this.saldo = saldo;
         this.saldoInicial = saldoInicial;
@@ -18,6 +20,16 @@ public class ContaModel
     }
 
     //Getters and Setters
+    public int getvUsuCodigo()
+    {
+        return vUsuCodigo;
+    }
+
+    public void setvUsuCodigo(int vUsuCodigo)
+    {
+        this.vUsuCodigo = vUsuCodigo;
+    }
+    
     public String getDescConta()
     {
         return descConta;

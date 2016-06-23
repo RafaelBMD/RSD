@@ -2,15 +2,19 @@ package br.com.rsd.model;
 
 public class CategoriaModel
 {
+    private int usuCodigo;
     private String descCategoria;
     private int tipoCategoria;
     private int cor;
     private boolean categoriaAtiva;
 
+
+
     public CategoriaModel(){} //Construtor padrão
     
-    public CategoriaModel(String descCategoria, int tipoCategoria, int cor, boolean categoriaAtiva)
+    public CategoriaModel(int usuCodigo, String descCategoria, int tipoCategoria, int cor, boolean categoriaAtiva)
     {
+        this.usuCodigo = usuCodigo;
         this.descCategoria = descCategoria;
         this.tipoCategoria = tipoCategoria;
         this.cor = cor;
@@ -18,6 +22,15 @@ public class CategoriaModel
     }
 
     //Getters and Setters
+    
+    public int getUsuCodigo() {
+        return usuCodigo;
+    }
+
+    public void setUsuCodigo(int usuCodigo) {
+        this.usuCodigo = usuCodigo;
+    }
+    
     public String getDescCategoria()
     {
         return descCategoria;

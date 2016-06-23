@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 
 import java.util.*;
 import java.text.*;
+import static java.time.LocalDate.now;
 
 public class MovimentacoesView extends javax.swing.JFrame
 {
@@ -273,6 +274,7 @@ public class MovimentacoesView extends javax.swing.JFrame
        
     }//GEN-LAST:event_cDescricaoActionPerformed
 
+    
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -303,19 +305,19 @@ public class MovimentacoesView extends javax.swing.JFrame
             { 
                 case 0:
                     ReceitaModel receita = new ReceitaModel(vUsuCodigo, Integer.parseInt(vCodConta[0].trim()), cDescricao.getText(), cTipo.getSelectedIndex(),vValor, cData.getDate(), cLocal.getText(), Integer.parseInt(vCodCatConta[0].trim()));
-                    if (ReceitaController.inserir(receita)== true) {
+                    if (ReceitaController.inserir(receita, vUsuCodigo)== true) {
                         JOptionPane.showMessageDialog(this, "Receita gravada com sucesso");
                         dispose();
                     }break;
                 case 1:
                     DespesaModel despesa = new DespesaModel(vUsuCodigo, Integer.parseInt(vCodConta[0].trim()), cDescricao.getText(), cTipo.getSelectedIndex(),vValor, cData.getDate(), cLocal.getText(), Integer.parseInt(vCodCatConta[0].trim()));
-                    if (DespesaController.inserir(despesa)== true) {
+                    if (DespesaController.inserir(despesa, vUsuCodigo)== true) {
                         JOptionPane.showMessageDialog(this, "Despesa gravada com sucesso");
                         dispose();
                     }break;
                 case 2:
                     TransferenciaModel transferencia = new TransferenciaModel(vUsuCodigo, Integer.parseInt(vCodConta[0].trim()), cDescricao.getText(), cTipo.getSelectedIndex(),vValor, cData.getDate(), cLocal.getText(), Integer.parseInt(vCodCatConta[0].trim()));
-                    if (TransferenciaController.inserir(transferencia)== true) {
+                    if (TransferenciaController.inserir(transferencia, vUsuCodigo)== true) {
                         JOptionPane.showMessageDialog(this, "Transferência gravada com sucesso");
                         dispose();
                     }
@@ -331,7 +333,7 @@ public class MovimentacoesView extends javax.swing.JFrame
               JOptionPane.showMessageDialog(null, "Transação não efetuada com sucesso!", "ERRO", JOptionPane.ERROR_MESSAGE);
               return;
         }      
-        
+        limpa();
         
     }//GEN-LAST:event_btSalvarActionPerformed
 
@@ -344,7 +346,7 @@ public class MovimentacoesView extends javax.swing.JFrame
         Connection con2;
         con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
         
-           PreparedStatement stmt2 = con2.prepareStatement("select * from Conta");
+           PreparedStatement stmt2 = con2.prepareStatement("select * from Conta where usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet
@@ -365,7 +367,7 @@ public class MovimentacoesView extends javax.swing.JFrame
         
         jContaDestino.setName("Categoría");
 
-        PreparedStatement stmt = con.prepareStatement("select * from Categoria");
+        PreparedStatement stmt = con.prepareStatement("select * from Categoria where vUsuCodigo = "+ vUsuCodigo);
 
             // executa um select
         ResultSet rs = stmt.executeQuery();
@@ -390,7 +392,7 @@ public class MovimentacoesView extends javax.swing.JFrame
         Connection con;
         con = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
         
-           PreparedStatement stmt = con.prepareStatement("select * from Conta");
+           PreparedStatement stmt = con.prepareStatement("select * from Conta where usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs = stmt.executeQuery();
             // itera no ResultSet
@@ -453,6 +455,15 @@ public class MovimentacoesView extends javax.swing.JFrame
         preencheContaOrigem();
     }//GEN-LAST:event_formComponentShown
     
+    public void limpa()
+    {
+        Date vDt = new Date();      
+        cData.setDate(vDt);             
+        cDescricao.setText("");         
+        cLocal.setText("")              ;
+        cValor.setValue(0);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSair;
