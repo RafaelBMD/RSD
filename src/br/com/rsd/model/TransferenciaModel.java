@@ -8,9 +8,9 @@ public class TransferenciaModel extends MovimentacaoModel
 
     public TransferenciaModel(){} //Construtor padrão
 
-    public TransferenciaModel(int codConta, String descMovimentacao, int tipoMovimentacao, float valor, Date dataMovimentacao, String localizacao, int codContaDest)
+    public TransferenciaModel(int usuCodigo, int codConta, String descMovimentacao, int tipoMovimentacao, float valor, Date dataMovimentacao, String localizacao, int codContaDest)
     {
-        super(codConta, descMovimentacao, tipoMovimentacao, valor, dataMovimentacao, localizacao);
+        super(usuCodigo, codConta, descMovimentacao, tipoMovimentacao, valor, dataMovimentacao, localizacao);
         this.codContaDest = codContaDest;
     }
 

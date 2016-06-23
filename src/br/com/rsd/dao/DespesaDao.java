@@ -25,8 +25,8 @@ public class DespesaDao
                     + despesa.getTipoMovimentacao() + ", '"
                     + despesa.getDescMovimentacao() + "', '"
                     + despesa.getLocalizacao() + "', "
-                    + despesa.getValor() + ", "
-                    + despesa.getDataMovimentacao() + "); ");
+                    + despesa.getValor() + ", '"
+                    + despesa.formataData(despesa.getDataMovimentacao()) + "'); ");
 
             st2.execute("INSERT INTO Despesa (CodMovimentacao, CodCategoria)"
                     + "VALUES ((SELECT MAX(m.CodMovimentacao) FROM Movimentacao m), "
@@ -38,7 +38,7 @@ public class DespesaDao
             e.printStackTrace();
             throw new Exception("Erro ao Salvar Dados!");
         }
-        return false;
+        return true;
     }
     
     public static boolean excluir(String codigo) throws Exception
@@ -70,8 +70,8 @@ public class DespesaDao
             st.execute("UPDATE Movimentacao SET  DescMovimentacao = '" + despesa.getDescMovimentacao() + "',"
                     + " TipoMovimentacao = " + despesa.getTipoMovimentacao() + ","
                     + " Valor = " + despesa.getValor() + ","
-                    + " DataMovimentacao = " + despesa.getDataMovimentacao() + ","
-                    + " Localizacao = " + despesa.getLocalizacao() + ","
+                    + " DataMovimentacao = '" + despesa.formataData(despesa.getDataMovimentacao()) + "',"
+                    + " Localizacao = '" + despesa.getLocalizacao() + "',"
                     + " WHERE CodMovimentacao = " +  CodMovimentacao);
             
         } catch (Exception e)
@@ -97,6 +97,6 @@ public class DespesaDao
             e.printStackTrace();
             throw new Exception("Erro ao Salvar Dados!");
         }
-        return false;
+        return true;
     }
 }

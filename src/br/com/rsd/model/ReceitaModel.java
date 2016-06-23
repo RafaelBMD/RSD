@@ -8,12 +8,12 @@ public class ReceitaModel extends MovimentacaoModel
 
     public ReceitaModel(){} //Construtor padrão
 
-    public ReceitaModel(int codConta, String descMovimentacao, int tipoMovimentacao, float valor, Date dataMovimentacao, String localizacao, int codCategoria)
+    public ReceitaModel(int usuCodigo, int codConta, String descMovimentacao, int tipoMovimentacao, float valor, Date dataMovimentacao, String localizacao, int codCategoria)
     {
-        super(codConta, descMovimentacao, tipoMovimentacao, valor, dataMovimentacao, localizacao);
+        super(usuCodigo, codConta, descMovimentacao, tipoMovimentacao, valor, dataMovimentacao, localizacao);
         this.codCategoria = codCategoria;
     }
-
+     
     //Getters and Setters
     public int getCodContaDest()
     {

@@ -13,24 +13,25 @@ public class TransferenciaDao
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             Statement st2 = conect.getSt();
-            st.execute("INSERT INTO Movimentacao (DescMovimentacao, TipoMovimentacao, Valor, DataMovimentacao, Localizacao)"
-                    + "VALUES ('" + transferencia.getDescMovimentacao() + "', "
-                    + transferencia.getTipoMovimentacao() + ","
+            st.execute("INSERT INTO Movimentacao (CodConta, TipoMovimentacao, DescMovimentacao, Localizacao, Valor, DataMovimentacao)"
+                    + " VALUES (" + transferencia.getCodConta() + ", "
+                    + transferencia.getTipoMovimentacao() + ", '"
+                    + transferencia.getDescMovimentacao() + "', '"
+                    + transferencia.getLocalizacao() + "', "
                     + transferencia.getValor() + ", '"
-                    + transferencia.getDataMovimentacao() + "', '"
-                    + transferencia.getLocalizacao() + "'); ");
+                    + transferencia.formataData(transferencia.getDataMovimentacao()) + "'); ");
 
-            st2.execute("INSERT INTO Transferencia (CodMovimentacao, CodContaDest)"
+            st2.execute("INSERT INTO Transferencia (CodMovimentacao, CodContaDestino)"
                     + "VALUES ((SELECT MAX(m.CodMovimentacao) FROM Movimentacao m), "
                     + transferencia.getCodContaDest() + "); ");
-
+    
         } catch (Exception e)
         {
             System.out.println("Problemas Ocorreram");
             e.printStackTrace();
             throw new Exception("Erro ao Salvar Dados!");
         }
-        return false;
+        return true;
     }
     
     public static boolean excluir(String codigo) throws Exception
@@ -59,11 +60,12 @@ public class TransferenciaDao
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
-            st.execute("UPDATE Movimentacao SET  DescMovimentacao = '" + transferencia.getDescMovimentacao() + "',"
+            st.execute("UPDATE Movimentacao SET CodConta = " + transferencia.getCodConta() + ","
+                    + " DescMovimentacao = '" + transferencia.getDescMovimentacao() + "',"
                     + " TipoMovimentacao = " + transferencia.getTipoMovimentacao() + ","
                     + " Valor = " + transferencia.getValor() + ","
-                    + " DataMovimentacao = " + transferencia.getDataMovimentacao() + ","
-                    + " Localizacao = " + transferencia.getLocalizacao() + ","
+                    + " DataMovimentacao = '" + transferencia.formataData(transferencia.getDataMovimentacao()) + "',"
+                    + " Localizacao = '" + transferencia.getLocalizacao() + "',"
                     + " WHERE CodMovimentacao = " +  CodMovimentacao);
             
         } catch (Exception e)
@@ -89,6 +91,6 @@ public class TransferenciaDao
             e.printStackTrace();
             throw new Exception("Erro ao Salvar Dados!");
         }
-        return false;
+        return true;
     }
 }

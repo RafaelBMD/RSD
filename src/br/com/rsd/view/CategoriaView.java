@@ -398,7 +398,6 @@ public class CategoriaView extends javax.swing.JFrame
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try {
             if (CategoriaController.relatorio() == true) {
-                JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
             }
         } catch (Exception ex) {
             Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);

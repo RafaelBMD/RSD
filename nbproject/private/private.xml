@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/dao/CategoriaDao.java</file>
-            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/view/ContaView.java</file>
-            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/controller/CategoriaController.java</file>
-            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/model/ContaModel.java</file>
-            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/controller/ContaController.java</file>
-            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/view/CategoriaView.java</file>
-            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/view/RelatorioView.java</file>
-            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/dao/ContaDao.java</file>
+            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/view/MovimentacoesView.java</file>
+            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/dao/ReceitaDao.java</file>
+            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/view/PrincipalView.java</file>
+            <file>file:/C:/Users/rafae/Documents/GitHub/RSD/src/br/com/rsd/model/ReceitaModel.java</file>
         </group>
     </open-files>
 </project-private>

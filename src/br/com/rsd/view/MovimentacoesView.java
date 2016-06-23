@@ -7,6 +7,7 @@ import br.com.rsd.controller.DespesaController;
 import br.com.rsd.model.ReceitaModel;
 import br.com.rsd.model.TransferenciaModel;
 import br.com.rsd.model.DespesaModel;
+import br.com.rsd.view.LoginView;
 import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,8 +29,11 @@ import java.text.*;
 
 public class MovimentacoesView extends javax.swing.JFrame
 {
-    public MovimentacoesView()
+    
+    int vUsuCodigo; 
+    public MovimentacoesView(int vUsuCodigo)
     {
+        this.vUsuCodigo = vUsuCodigo;
         initComponents();
     }
 
@@ -278,7 +282,7 @@ public class MovimentacoesView extends javax.swing.JFrame
         try {
             
             try {  
-               int i = Integer.parseInt(cValor.getText());  
+               float i = Float.parseFloat(cValor.getText().replace(",", "."));  
             
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Valor incorreto!", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -287,32 +291,30 @@ public class MovimentacoesView extends javax.swing.JFrame
           
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             format.setLenient(false);
-            try {
-                // se passou pra cá, é porque a data é válida
-                Date data = format.parse(cData.getDate().toString());              
-            } catch(ParseException e) {
+           if(cData.getDate() == null) {
                 // se cair aqui, a data é inválida
                 JOptionPane.showMessageDialog(null, "Data incorreta!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-
+           
+           float vValor = Float.parseFloat(cValor.getText().replace(",", "."));
+           
             switch (this.cTipo.getSelectedIndex())
             { 
                 case 0:
-                    ReceitaModel receita = new ReceitaModel(Integer.parseInt(vCodConta[0]), cDescricao.getText(), cTipo.getSelectedIndex(),Float.parseFloat(cValor.getText()), formato.parse(cData.getDateFormatString()), cLocal.getText(), Integer.parseInt(vCodCatConta[0]));
+                    ReceitaModel receita = new ReceitaModel(vUsuCodigo, Integer.parseInt(vCodConta[0].trim()), cDescricao.getText(), cTipo.getSelectedIndex(),vValor, cData.getDate(), cLocal.getText(), Integer.parseInt(vCodCatConta[0].trim()));
                     if (ReceitaController.inserir(receita)== true) {
                         JOptionPane.showMessageDialog(this, "Receita gravada com sucesso");
                         dispose();
                     }break;
                 case 1:
-                    DespesaModel despesa = new DespesaModel(Integer.parseInt(vCodConta[0]), cDescricao.getText(), cTipo.getSelectedIndex(),Float.parseFloat(cValor.getText()), formato.parse(cData.getDateFormatString()), cLocal.getText(), Integer.parseInt(vCodCatConta[0]));
+                    DespesaModel despesa = new DespesaModel(vUsuCodigo, Integer.parseInt(vCodConta[0].trim()), cDescricao.getText(), cTipo.getSelectedIndex(),vValor, cData.getDate(), cLocal.getText(), Integer.parseInt(vCodCatConta[0].trim()));
                     if (DespesaController.inserir(despesa)== true) {
                         JOptionPane.showMessageDialog(this, "Despesa gravada com sucesso");
                         dispose();
                     }break;
                 case 2:
-                    TransferenciaModel transferencia = new TransferenciaModel(Integer.parseInt(vCodConta[0]), cDescricao.getText(), cTipo.getSelectedIndex(),Float.parseFloat(cValor.getText()), formato.parse(cData.getDateFormatString()), cLocal.getText(), Integer.parseInt(vCodCatConta[0]));
+                    TransferenciaModel transferencia = new TransferenciaModel(vUsuCodigo, Integer.parseInt(vCodConta[0].trim()), cDescricao.getText(), cTipo.getSelectedIndex(),vValor, cData.getDate(), cLocal.getText(), Integer.parseInt(vCodCatConta[0].trim()));
                     if (TransferenciaController.inserir(transferencia)== true) {
                         JOptionPane.showMessageDialog(this, "Transferência gravada com sucesso");
                         dispose();
@@ -321,17 +323,21 @@ public class MovimentacoesView extends javax.swing.JFrame
         }   
         catch (ParseException ex) {
               Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
+              JOptionPane.showMessageDialog(null, "Transação não efetuada com sucesso!", "ERRO", JOptionPane.ERROR_MESSAGE);
+              return;
           }
         catch (Exception ex) {
               Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
-          }      
+              JOptionPane.showMessageDialog(null, "Transação não efetuada com sucesso!", "ERRO", JOptionPane.ERROR_MESSAGE);
+              return;
+        }      
         
         
     }//GEN-LAST:event_btSalvarActionPerformed
 
     public void preencheCampo(Integer tipo){
     cContaDestino.removeAllItems();
-        if (tipo == 0)
+        if (tipo == 2)
         { 
            jContaDestino.setName("Conta de Destino");     
        try {
@@ -343,7 +349,7 @@ public class MovimentacoesView extends javax.swing.JFrame
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet
             while (rs2.next()) {
-             cContaDestino.addItem(rs2.getString("CodConta") + "-" +rs2.getString("DescConta"));
+             cContaDestino.addItem(rs2.getString("CodConta") + " - " +rs2.getString("DescConta"));
             }
         stmt2.close();
     con2.close();
@@ -366,7 +372,7 @@ public class MovimentacoesView extends javax.swing.JFrame
 
             // itera no ResultSet
         while (rs.next()) {
-          cContaDestino.addItem(rs.getString("CodCategoria") + "-" +rs.getString("DescCategoria"));
+          cContaDestino.addItem(rs.getString("CodCategoria") + " - " +rs.getString("DescCategoria"));
         }
         stmt.close();
         con.close();
@@ -377,13 +383,40 @@ public class MovimentacoesView extends javax.swing.JFrame
         }  
     }
     
+        public void preencheContaOrigem(){
+    cContaOrigem.removeAllItems();
+        
+       try {
+        Connection con;
+        con = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
+        
+           PreparedStatement stmt = con.prepareStatement("select * from Conta");
+            // executa um select
+            ResultSet rs = stmt.executeQuery();
+            // itera no ResultSet
+            while (rs.next()) {
+             cContaOrigem.addItem(rs.getString("CodConta") + " - " +rs.getString("DescConta"));
+            }
+        stmt.close();
+    con.close();
+   }   catch (SQLException ex) {
+           Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
+     } 
+        
+           
+          
+    }
     
     private void cTipoPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cTipoPopupMenuWillBecomeInvisible
         preencheCampo(this.cTipo.getSelectedIndex());
         
         
     }//GEN-LAST:event_cTipoPopupMenuWillBecomeInvisible
-
+    
+    public void selecionaTipo(int vTipo){
+        cTipo.setSelectedIndex(vTipo);
+    }
+    
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         dispose();
     }//GEN-LAST:event_btSairActionPerformed
@@ -417,7 +450,7 @@ public class MovimentacoesView extends javax.swing.JFrame
     }//GEN-LAST:event_cValorKeyTyped
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        preencheCampo(2);
+        preencheContaOrigem();
     }//GEN-LAST:event_formComponentShown
     
 

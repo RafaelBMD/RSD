@@ -2,8 +2,11 @@ package br.com.rsd.view;
 
 public class PrincipalView extends javax.swing.JFrame
 {
-    public PrincipalView()
+    int vUsuCodigo;
+    
+    public PrincipalView(int vUsuCodigo)
     {
+        this.vUsuCodigo = vUsuCodigo;
         initComponents();
     }
 
@@ -135,45 +138,61 @@ public class PrincipalView extends javax.swing.JFrame
 
     private void CadastrosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CadastrosActionPerformed
     {//GEN-HEADEREND:event_CadastrosActionPerformed
+        try{
         switch (this.Cadastros.getSelectedIndex())
         { 
             case 1:
-                ContaView conta = new ContaView();
+                ContaView conta = new ContaView(vUsuCodigo);
                 conta.setVisible(true);
                 break;
             case 2:
-                CategoriaView categoria = new CategoriaView();
+                CategoriaView categoria = new CategoriaView(vUsuCodigo);
                 categoria.setVisible(true);
                 break;
         }
+        }finally{
+           Cadastros.setSelectedIndex(0);
+        }
+        
     }//GEN-LAST:event_CadastrosActionPerformed
 
     private void MovimentacoesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_MovimentacoesActionPerformed
     {//GEN-HEADEREND:event_MovimentacoesActionPerformed
+        try{
         switch (this.Movimentacoes.getSelectedIndex())
         { 
             case 1:
-                MovimentacoesView receita = new MovimentacoesView();
-                receita.setVisible(true);
+                MovimentacoesView receita = new MovimentacoesView(vUsuCodigo);
+                receita.preencheCampo(0);
+                receita.selecionaTipo(0);
+                receita.setVisible(true);              
                 break;
             case 2:
-                MovimentacoesView despesa = new MovimentacoesView();
+                MovimentacoesView despesa = new MovimentacoesView(vUsuCodigo);                
+                despesa.preencheCampo(1);
+                despesa.selecionaTipo(1);
                 despesa.setVisible(true);
                 break;
             case 3:
-                MovimentacoesView transferencia = new MovimentacoesView();
+                MovimentacoesView transferencia = new MovimentacoesView(vUsuCodigo);
+                transferencia.preencheCampo(2);
+                transferencia.selecionaTipo(2);
                 transferencia.setVisible(true);
                 break;
             case 4:
-                ConsultaView consulta = new ConsultaView();
+                
+                ConsultaView consulta = new ConsultaView(vUsuCodigo);
                 consulta.setVisible(true);
                 break;    
+        }
+        }finally{
+           Movimentacoes.setSelectedIndex(0);
         }
     }//GEN-LAST:event_MovimentacoesActionPerformed
 
     private void btRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioActionPerformed
-        RelatorioView rel = new RelatorioView();
-            rel.setVisible(true);
+        RelatorioView relatorio = new RelatorioView();       
+        relatorio.setVisible(true);
     }//GEN-LAST:event_btRelatorioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

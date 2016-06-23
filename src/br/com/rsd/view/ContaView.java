@@ -17,8 +17,10 @@ import javax.swing.table.DefaultTableModel;
 public class ContaView extends javax.swing.JFrame
 {
     String codigoConta;
-    public ContaView()
+    int vUsuCodigo;
+    public ContaView(int vUsuCodigo)
     {
+        this.vUsuCodigo = vUsuCodigo;
         initComponents();
     }
 
@@ -343,7 +345,7 @@ public class ContaView extends javax.swing.JFrame
         con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
         
         PreparedStatement stmt2 = con2.prepareStatement(
-        "  SELECT * FROM Conta c WHERE c.codConta = " + codigoConta);
+        "  SELECT * FROM Conta c WHERE c.codConta = " + codigoConta + " and c.usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet
@@ -419,7 +421,6 @@ public class ContaView extends javax.swing.JFrame
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try {
             if (ContaController.relatorio() == true) {
-                JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
             }
         } catch (Exception ex) {
             Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);
@@ -433,7 +434,7 @@ public class ContaView extends javax.swing.JFrame
         con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
         DefaultTableModel modelo = (DefaultTableModel) tConta.getModel();
         
-        PreparedStatement stmt2 = con2.prepareStatement("select * from Conta");
+        PreparedStatement stmt2 = con2.prepareStatement("select * from Conta where usucodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet

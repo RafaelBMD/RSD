@@ -38,28 +38,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="152" splitType="Stretch">
-			<rectangle>
-				<reportElement x="0" y="0" width="555" height="150" uuid="f37a5576-1ebc-4c0b-8831-479e9a6f76d6"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="0" y="80" width="555" height="60" backcolor="#660000" uuid="acea9a43-0850-4527-99ed-b740ff7fdb2d"/>
-			</rectangle>
-			<textField>
-				<reportElement x="100" y="38" width="284" height="41" uuid="947ae243-b73c-4205-9b93-2e225b8f9480"/>
-				<textElement verticalAlignment="Bottom">
-					<font fontName="Gautami" size="20" isBold="true" isUnderline="false" isStrikeThrough="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[Relatório de contas]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement x="0" y="137" width="555" height="15" forecolor="#000000" backcolor="#000000" uuid="e521082d-f073-4c15-9ca1-8d594c3c87f4"/>
-			</rectangle>
-			<image>
-				<reportElement x="15" y="15" width="64" height="64" uuid="15fa83aa-813c-42dc-8202-06258be7a40e"/>
-				<imageExpression><![CDATA["C:\\Users\\Particular\\Desktop\\UFV - Denilson\\SIN 143 - Laboratório de Programação\\Projeto\\Icones\\cash-register.png"]]></imageExpression>
-			</image>
-		</band>
+		<band height="152" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="28" splitType="Stretch"/>

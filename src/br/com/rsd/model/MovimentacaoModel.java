@@ -1,18 +1,21 @@
 package br.com.rsd.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public abstract class MovimentacaoModel
 {
-    private int codConta, tipoMovimentacao;
+    private int usuCodigo, codConta, tipoMovimentacao;
     private String descMovimentacao, localizacao;
     private Float valor;
     private Date dataMovimentacao;
 
     public MovimentacaoModel(){} //Construtor padrão
 
-    public MovimentacaoModel(int codConta, String descMovimentacao, int tipoMovimentacao, float valor, Date dataMovimentacao, String localizacao)
+    public MovimentacaoModel(int usuCodigo, int codConta, String descMovimentacao, int tipoMovimentacao, float valor, Date dataMovimentacao, String localizacao)
     {
+        this.usuCodigo = usuCodigo;
         this.codConta = codConta;
         this.tipoMovimentacao = tipoMovimentacao;
         this.descMovimentacao = descMovimentacao;
@@ -20,8 +23,23 @@ public abstract class MovimentacaoModel
         this.valor = valor;
         this.dataMovimentacao = dataMovimentacao;
     }
-
+      public String formataData(Date vData){
+       Calendar data = Calendar.getInstance();
+       SimpleDateFormat formato = new 
+       SimpleDateFormat("yyyy-MM-dd");
+       formato.setLenient(false);   
+    return (formato.format(vData.getTime()));
+    }
     //Getters and Setters
+    public Integer getUsuCodigo()
+    {
+        return usuCodigo;
+    }
+
+    public void setUsuCodigo(int usuCodigo)
+    {
+        this.usuCodigo = usuCodigo;
+    }
     public Integer getCodConta()
     {
         return codConta;

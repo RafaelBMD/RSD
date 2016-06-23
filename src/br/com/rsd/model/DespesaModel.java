@@ -8,9 +8,9 @@ public class DespesaModel extends MovimentacaoModel
 
     public DespesaModel(){} //Construtor padrão
 
-    public DespesaModel(int codConta, String descMovimentacao, int tipoMovimentacao, float valor, Date dataMovimentacao, String localizacao, int codCategoria)
+    public DespesaModel(int usuCodigo, int codConta, String descMovimentacao, int tipoMovimentacao, float valor, Date dataMovimentacao, String localizacao, int codCategoria)
     {
-        super(codConta, descMovimentacao, tipoMovimentacao, valor, dataMovimentacao, localizacao);
+        super(usuCodigo, codConta, descMovimentacao, tipoMovimentacao, valor, dataMovimentacao, localizacao);
         this.codCategoria = codCategoria;
     }
 

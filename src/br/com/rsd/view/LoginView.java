@@ -14,6 +14,7 @@ import java.util.*;
 
 public class LoginView extends javax.swing.JFrame
 {
+
     public LoginView()
     {
         initComponents();
@@ -183,8 +184,8 @@ public class LoginView extends javax.swing.JFrame
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet
-            if (rs2.next()){
-                PrincipalView principal = new PrincipalView();
+            if (rs2.next()){                
+                PrincipalView principal = new PrincipalView(rs2.getInt("usuCodigo"));
                 principal.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Senha ou usuário incorreto!", "ERRO", JOptionPane.ERROR_MESSAGE);

@@ -15,8 +15,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConsultaView extends javax.swing.JFrame
 {
-    public ConsultaView()
+    int vUsuCodigo;
+    public ConsultaView(int vUsuCodigo)
     {
+        this.vUsuCodigo = vUsuCodigo;
         initComponents();
     }
 
@@ -192,15 +194,15 @@ public class ConsultaView extends javax.swing.JFrame
        switch (this.btIncluir.getSelectedIndex())
         { 
             case 1:
-                MovimentacoesView receita = new MovimentacoesView();
+                MovimentacoesView receita = new MovimentacoesView(vUsuCodigo);
                 receita.setVisible(true);
                 break;
             case 2:
-                MovimentacoesView despesa = new MovimentacoesView();
+                MovimentacoesView despesa = new MovimentacoesView(vUsuCodigo);
                 despesa.setVisible(true);
                 break;
             case 3:
-                MovimentacoesView transferencia = new MovimentacoesView();
+                MovimentacoesView transferencia = new MovimentacoesView(vUsuCodigo);
                 transferencia.setVisible(true);
                 break;    
         }

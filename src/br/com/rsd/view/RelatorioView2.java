@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.rsd.view;
+
 import br.com.rsd.controller.RelatorioController;
 import br.com.rsd.controller.CategoriaController;
 import br.com.rsd.dao.ReceitaDao;
@@ -31,12 +32,17 @@ import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-public class RelatorioView extends javax.swing.JFrame {
+/**
+ *
+ * @author rafae
+ */
+public class RelatorioView2 extends javax.swing.JPanel {
 
     /**
      * Creates new form RelatorioView
      */
-    public RelatorioView() {
+    public RelatorioView2() {
+        System.out.println("asd");
         initComponents();
     }
 
@@ -74,8 +80,11 @@ public class RelatorioView extends javax.swing.JFrame {
         cCategoria = new javax.swing.JComboBox<>();
         jContaDestino1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(528, 377));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/rsd/image/money-bag.png"))); // NOI18N
 
@@ -279,8 +288,8 @@ public class RelatorioView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -293,7 +302,7 @@ public class RelatorioView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,83 +316,84 @@ public class RelatorioView extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cTipoPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cTipoPopupMenuWillBecomeInvisible
-
-    }//GEN-LAST:event_cTipoPopupMenuWillBecomeInvisible
 
     private void cDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cDescricaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cDescricaoActionPerformed
 
+    private void cTipoPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cTipoPopupMenuWillBecomeInvisible
+        
+    }//GEN-LAST:event_cTipoPopupMenuWillBecomeInvisible
+
     private void btImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirActionPerformed
         String filtro = "";
         String[] codigo;
-
+        
         if(cDataI.getDate().before(cDataF.getDate())){
-            JOptionPane.showMessageDialog(null, "Data Início deve ser Menor ou Igual que a Data Fim!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
+         JOptionPane.showMessageDialog(null, "Data Início deve ser Menor ou Igual que a Data Fim!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;        
         }
-
+        
         try {
-            if(!cDataI.equals(null)){
-                filtro = filtro + " AND m.dataMovimentacao >= " + cDataI.getDate();
-            }
-            if(!cDataF.equals(null)){
-                filtro = filtro + " AND m.dataMovimentacao <= " + cDataF.getDate();
-            }
-            if(cTipo.getSelectedIndex() != 1){
-                codigo = cTipo.toString().split("-");
-                filtro = filtro + " AND m.TipoMovimentacao = " + codigo[0].trim();
-            }
-            if(cContaOrigem.getSelectedIndex() != 1){
-                codigo = cContaOrigem.toString().split("-");
-                filtro = filtro + " AND c.codConta = " + codigo[0].trim();
-            }
-            if(cContaDestino.getSelectedIndex() != 1){
-                codigo = cContaDestino.toString().split("-");
-                filtro = filtro + " AND t.codConta = " + codigo[0].trim();
-            }
-            if(cCategoria.getSelectedIndex() != 1){
-                codigo = cCategoria.toString().split("-");
-                filtro = filtro + " AND c.codCategoria = " + codigo[0].trim();
-            }
-            if(cDescricao.getText().equals("")){
-                filtro = filtro + " AND m.descMovimentacao = " + cDescricao.getText().trim();
-            }
-            if(cLocal.getText().equals("")){
-                filtro = filtro + " AND m.localidade = " + cLocal.getText().trim();
-            }
-
-            switch (cRelatorio.getSelectedIndex())
-            {
-                case 0:
+           if(!cDataI.equals(null)){
+               filtro = filtro + " AND m.dataMovimentacao >= " + cDataI.getDate();
+           }
+           if(!cDataF.equals(null)){
+               filtro = filtro + " AND m.dataMovimentacao <= " + cDataF.getDate();
+           } 
+           if(cTipo.getSelectedIndex() != 1){
+               codigo = cTipo.toString().split("-");
+               filtro = filtro + " AND m.TipoMovimentacao = " + codigo[0].trim();
+           }
+           if(cContaOrigem.getSelectedIndex() != 1){
+               codigo = cContaOrigem.toString().split("-");
+               filtro = filtro + " AND c.codConta = " + codigo[0].trim();
+           }
+           if(cContaDestino.getSelectedIndex() != 1){
+               codigo = cContaDestino.toString().split("-");
+               filtro = filtro + " AND t.codConta = " + codigo[0].trim();
+           }
+           if(cCategoria.getSelectedIndex() != 1){
+               codigo = cCategoria.toString().split("-");
+               filtro = filtro + " AND c.codCategoria = " + codigo[0].trim();
+           }
+           if(cDescricao.getText().equals("")){
+               filtro = filtro + " AND m.descMovimentacao = " + cDescricao.getText().trim();
+           }
+           if(cLocal.getText().equals("")){
+               filtro = filtro + " AND m.localidade = " + cLocal.getText().trim();
+           }
+            
+           switch (cRelatorio.getSelectedIndex())
+        { 
+            case 0:
                 if (RelatorioController.relatorio(filtro, "") == true) {
-                    JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
-                }
-                break;
-                case 1:
-                if (RelatorioController.relatorio(filtro, "") == true) {
-                    JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
-                }
-                break;
-                case 2:
-                if (RelatorioController.relatorio(filtro, "") == true) {
-                    JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
-                }
-                break;
-                case 3:
-                if (RelatorioController.relatorio(filtro, "") == true) {
-                    JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
-                }
-                break;
+                JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
             }
-
+                break;
+            case 1:
+                if (RelatorioController.relatorio(filtro, "") == true) {
+                JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
+            }
+                break;
+            case 2:
+                if (RelatorioController.relatorio(filtro, "") == true) {
+                JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
+            }
+                break;
+            case 3:
+                if (RelatorioController.relatorio(filtro, "") == true) {
+                JOptionPane.showMessageDialog(this, "Relatório impresso com sucesso");
+            }
+                break;    
+        }
+           
+           
+           
+            
         } catch (Exception ex) {
             Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -393,6 +403,7 @@ public class RelatorioView extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
+    
     private void cDataIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cDataIFocusLost
         try{
             Calendar data = Calendar.getInstance();
@@ -407,6 +418,40 @@ public class RelatorioView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cDataIFocusLost
 
+        public void preencheCampo(){
+        cContaDestino.removeAllItems();
+        cContaOrigem.removeAllItems();
+       
+           jContaDestino.setName("Conta de Destino");     
+       try {
+        Connection con;
+        Connection con2;
+        con = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
+        con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
+        
+        PreparedStatement stmt = con.prepareStatement("select * from Categoria");
+        PreparedStatement stmt2 = con2.prepareStatement("select * from Conta");
+         // executa um select
+         ResultSet rs = stmt.executeQuery();
+         ResultSet rs2 = stmt2.executeQuery();      
+         // itera no ResultSet
+         while (rs.next()) {
+           cContaDestino.addItem(rs.getString("CodCategoria") + "-" +rs.getString("DescCategoria"));
+         }
+
+         while (rs2.next()) {
+          cContaDestino.addItem(rs2.getString("CodConta") + "-" +rs2.getString("DescConta"));
+          cContaOrigem.addItem(rs2.getString("CodConta") + "-" +rs2.getString("DescConta"));
+         }
+        stmt.close();
+        con.close();
+        stmt2.close();
+        con2.close();
+   }   catch (SQLException ex) {
+           Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
+     }                  
+    }
+    
     private void cDataIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cDataIMouseClicked
 
     }//GEN-LAST:event_cDataIMouseClicked
@@ -418,6 +463,10 @@ public class RelatorioView extends javax.swing.JFrame {
     private void cDataFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cDataFMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_cDataFMouseClicked
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        preencheCampo();
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
