@@ -31,7 +31,7 @@ public class ContaDao
             e.printStackTrace();
             throw new Exception("Erro ao Salvar Dados!");
         }
-        return false;
+        return true;
     }
     public static boolean excluir(String codigo, int vUsuCodigo) throws Exception
     {

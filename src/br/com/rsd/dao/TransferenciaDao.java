@@ -23,7 +23,7 @@ public class TransferenciaDao
                     + transferencia.formataData(transferencia.getDataMovimentacao()) + "'); ");
 
             st2.execute("INSERT INTO Transferencia (CodMovimentacao, CodContaDestino)"
-                    + "VALUES ((SELECT MAX(m.CodMovimentacao) FROM Movimentacao m), "
+                    + "VALUES ((SELECT MAX(m.CodMovimentacao) FROM Movimentacao m where m.usuCodigo = "+ vUsuCodigo +"), "
                     + transferencia.getCodContaDest() + "); ");
     
         } catch (Exception e)

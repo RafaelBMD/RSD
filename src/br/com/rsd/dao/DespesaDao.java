@@ -30,7 +30,7 @@ public class DespesaDao
                     + despesa.formataData(despesa.getDataMovimentacao()) + "'); ");
 
             st2.execute("INSERT INTO Despesa (CodMovimentacao, CodCategoria)"
-                    + "VALUES ((SELECT MAX(m.CodMovimentacao) FROM Movimentacao m), "
+                    + "VALUES ((SELECT MAX(m.CodMovimentacao) FROM Movimentacao m where m.usuCodigo = "+ vUsuCodigo +"), "
                     + despesa.getCodConta() + "); ");
 
         } catch (Exception e)

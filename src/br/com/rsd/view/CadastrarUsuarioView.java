@@ -1,6 +1,11 @@
 package br.com.rsd.view;
 import br.com.rsd.controller.UsuarioController;
 import br.com.rsd.model.UsuarioModel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -183,6 +188,28 @@ public class CadastrarUsuarioView extends javax.swing.JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            try{
+        Connection con2;
+        con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
+        
+           PreparedStatement stmt2 = con2.prepareStatement("select * from Usuario where usuario = '" + cUsuario.getText().trim() + "'");
+            // executa um select
+            ResultSet rs2 = stmt2.executeQuery();
+            // itera no ResultSet
+            if (rs2.next()) {
+             JOptionPane.showMessageDialog(this, "Usuário já existe no sistema!");
+                return;
+            }
+        stmt2.close();
+        con2.close();
+
+   }   catch (SQLException ex) {
+           Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
+           return;
+     }     
+            
+            
+            
         if(!cSenha.getText().trim().equals(cCSenha.getText().trim())){
           JOptionPane.showMessageDialog(null, "Senha não confere!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 return;  
@@ -196,11 +223,11 @@ public class CadastrarUsuarioView extends javax.swing.JFrame
                     cEmail.getText());
             if (estado.getText() == "Inserir"){
             if (UsuarioController.inserir(categoria) == true) {
-                JOptionPane.showMessageDialog(this, "Usuário salva com sucesso");
+                JOptionPane.showMessageDialog(this, "Usuário salvo com sucesso");
             }           
             }else{
             if (UsuarioController.alterar(categoria, codigoUsu) == true) {
-                JOptionPane.showMessageDialog(this, "Usuário alterada com sucesso");
+                JOptionPane.showMessageDialog(this, "Usuário alterado com sucesso");
             }}  
         } catch (Exception ex) {
             Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);

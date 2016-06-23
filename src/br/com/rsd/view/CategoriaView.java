@@ -51,8 +51,6 @@ public class CategoriaView extends javax.swing.JFrame
         Categoria = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -228,12 +226,6 @@ public class CategoriaView extends javax.swing.JFrame
         Categoria.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
         Categoria.setText("Categoria");
 
-        jMenu1.setText("Arquivo");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Registro");
-        jMenuBar1.add(jMenu2);
-
         jMenu3.setText("Relatório");
 
         jMenuItem1.setText("Relação");
@@ -299,12 +291,13 @@ public class CategoriaView extends javax.swing.JFrame
             if (CategoriaController.alterar(categoria, codigoCat, vUsuCodigo) == true) {
                 JOptionPane.showMessageDialog(this, "Categoria alterada com sucesso");
             }}
-          preencheGrid();   
+             
         } catch (Exception ex) {
             Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);
         }
      }finally{
          limpa();
+         preencheGrid();
      }  
        
     }//GEN-LAST:event_SalvarActionPerformed
@@ -400,7 +393,6 @@ private void preencheGrid()
         "  WHEN 0 THEN 'Receita'\n" +
         "  ELSE 'Despesa' \n" +
         "  END Tipo,\n" +
-        "  c.Cor ,\n" + 
         "  c.CategoriaAtiva FROM Categoria c where c.usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
@@ -413,7 +405,6 @@ private void preencheGrid()
              rs2.getInt("CodCategoria"),
              rs2.getString("DescCategoria"),
              rs2.getString("Tipo"),
-             rs2.getInt("Cor"),
              rs2.getBoolean("CategoriaAtiva")              
              });
             }
@@ -446,8 +437,6 @@ private void preencheGrid()
     private javax.swing.JComboBox cEscolhaTipo;
     private javax.swing.JLabel estado;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

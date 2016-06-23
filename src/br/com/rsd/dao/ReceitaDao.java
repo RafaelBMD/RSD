@@ -35,7 +35,7 @@ public class ReceitaDao
                     + receita.formataData(receita.getDataMovimentacao()) + "'); ");
 
             st2.execute("INSERT INTO Receita (CodMovimentacao, CodCategoria)"
-                    + "VALUES ((SELECT MAX(m.CodMovimentacao) FROM Movimentacao m), "
+                    + "VALUES ((SELECT MAX(m.CodMovimentacao) FROM Movimentacao m where m.usuCodigo = "+ vUsuCodigo +"), "
                     + receita.getCodConta() + ");");
 
         } catch (Exception e)

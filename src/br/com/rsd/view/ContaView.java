@@ -49,8 +49,6 @@ public class ContaView extends javax.swing.JFrame
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -244,12 +242,6 @@ public class ContaView extends javax.swing.JFrame
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
         jLabel5.setText("Conta");
 
-        jMenu1.setText("Arquivo");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Registro");
-        jMenuBar1.add(jMenu2);
-
         jMenu3.setText("Relatório");
 
         jMenuItem1.setText("Relação");
@@ -313,6 +305,10 @@ public class ContaView extends javax.swing.JFrame
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btSalvarActionPerformed
     {//GEN-HEADEREND:event_btSalvarActionPerformed
         try{
+            if((cDescricao.getText()==null || cDescricao.getText().trim().equals(""))){
+                JOptionPane.showMessageDialog(this, "Favor Informar uma Descrição!");
+                return;
+            }
         try {
             
             ContaModel conta = new ContaModel(
@@ -324,12 +320,10 @@ public class ContaView extends javax.swing.JFrame
             
             if (estado.getText() == "Inserir"){
             if (ContaController.inserir(conta,vUsuCodigo) == true) 
-                preencheGrid();
-                JOptionPane.showMessageDialog(this, "Conta salva com sucesso");            
+                JOptionPane.showMessageDialog(this, "Conta salva com sucesso!");            
             }else{
                if (ContaController.alterar(conta, codigoConta,vUsuCodigo) == true) 
-                   preencheGrid();
-                   JOptionPane.showMessageDialog(this, "Conta alterada com sucesso"); 
+                   JOptionPane.showMessageDialog(this, "Conta alterada com sucesso!"); 
             }
            
         } catch (Exception ex) {
@@ -337,6 +331,7 @@ public class ContaView extends javax.swing.JFrame
         }
         }finally{
             limpa();
+            preencheGrid();
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
@@ -488,8 +483,6 @@ public class ContaView extends javax.swing.JFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

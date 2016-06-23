@@ -341,7 +341,7 @@ public class MovimentacoesView extends javax.swing.JFrame
     cContaDestino.removeAllItems();
         if (tipo == 2)
         { 
-           jContaDestino.setName("Conta de Destino");     
+           jContaDestino.setText("Conta de Destino");     
        try {
         Connection con2;
         con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
@@ -365,9 +365,9 @@ public class MovimentacoesView extends javax.swing.JFrame
         Connection con;
         con = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
         
-        jContaDestino.setName("Categoría");
+        jContaDestino.setText("Categoria");
 
-        PreparedStatement stmt = con.prepareStatement("select * from Categoria where vUsuCodigo = "+ vUsuCodigo);
+        PreparedStatement stmt = con.prepareStatement("select * from Categoria where UsuCodigo = "+ vUsuCodigo);
 
             // executa um select
         ResultSet rs = stmt.executeQuery();
@@ -452,6 +452,7 @@ public class MovimentacoesView extends javax.swing.JFrame
     }//GEN-LAST:event_cValorKeyTyped
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        limpa();
         preencheContaOrigem();
     }//GEN-LAST:event_formComponentShown
     
