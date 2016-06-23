@@ -19,11 +19,10 @@ public class CategoriaDao
         {
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
-            st.execute("INSERT INTO categoria (usuCodigo, DescCategoria, TipoCategoria, Cor, CategoriaAtiva)"
+            st.execute("INSERT INTO categoria (usuCodigo, DescCategoria, TipoCategoria, CategoriaAtiva)"
                     + "VALUES ("+ vUsuCodigo + ",'"
                     + categoria.getDescCategoria() + "',"
                     + categoria.getTipoCategoria() + ", "
-                    + categoria.getCor() + ", "
                     + categoria.getCategoriaAtiva() + "); ");
 
         } catch (Exception e)
@@ -59,7 +58,6 @@ public class CategoriaDao
             ConexaoPersistencia conect = new ConexaoPersistencia();
             Statement st = conect.getSt();
             st.execute("UPDATE Categoria SET  DescCategoria = '" + categoria.getDescCategoria() + "'," 
-                    + " Cor = " + categoria.getCor() + ","
                     + " TipoCategoria = " + categoria.getTipoCategoria() + ","
                     + " CategoriaAtiva = " + categoria.getCategoriaAtiva()
                     + " WHERE codCategoria = " +  CodCategoria + " and usuCodigo = " + vUsuCodigo);

@@ -5,19 +5,17 @@ public class CategoriaModel
     private int usuCodigo;
     private String descCategoria;
     private int tipoCategoria;
-    private int cor;
     private boolean categoriaAtiva;
 
 
 
     public CategoriaModel(){} //Construtor padrão
     
-    public CategoriaModel(int usuCodigo, String descCategoria, int tipoCategoria, int cor, boolean categoriaAtiva)
+    public CategoriaModel(int usuCodigo, String descCategoria, int tipoCategoria, boolean categoriaAtiva)
     {
         this.usuCodigo = usuCodigo;
         this.descCategoria = descCategoria;
         this.tipoCategoria = tipoCategoria;
-        this.cor = cor;
         this.categoriaAtiva = categoriaAtiva;
     }
 
@@ -49,16 +47,6 @@ public class CategoriaModel
     public void setTipoCategoria(int tipoCategoria)
     {
         this.tipoCategoria = tipoCategoria;
-    }
-
-    public int getCor()
-    {
-        return cor;
-    }
-
-    public void setCor(int cor)
-    {
-        this.cor = cor;
     }
 
     public boolean getCategoriaAtiva()

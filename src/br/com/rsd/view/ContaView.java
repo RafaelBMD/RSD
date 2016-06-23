@@ -312,6 +312,7 @@ public class ContaView extends javax.swing.JFrame
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btSalvarActionPerformed
     {//GEN-HEADEREND:event_btSalvarActionPerformed
+        try{
         try {
             
             ContaModel conta = new ContaModel(
@@ -333,6 +334,9 @@ public class ContaView extends javax.swing.JFrame
            
         } catch (Exception ex) {
             Logger.getLogger(ContaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }finally{
+            limpa();
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
@@ -387,6 +391,7 @@ public class ContaView extends javax.swing.JFrame
     }//GEN-LAST:event_btSairActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        limpa();
         preencheGrid();
     }//GEN-LAST:event_formComponentShown
 
@@ -457,7 +462,17 @@ public class ContaView extends javax.swing.JFrame
            Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
      } 
           
-    }      
+    }
+    
+   public void limpa(){
+    cContaAtiva.setSelected(true);
+    cDescricao.setText("");
+    cSaldo.setValue(0);
+    cSaldoInicial.setValue(0);
+    estado.setText("Inserir");
+   } 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
     private javax.swing.JButton btExcluir;

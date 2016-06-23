@@ -39,8 +39,6 @@ public class CategoriaView extends javax.swing.JFrame
         cDescricao = new javax.swing.JTextField();
         Tipo = new javax.swing.JLabel();
         cEscolhaTipo = new javax.swing.JComboBox();
-        Cor = new javax.swing.JLabel();
-        cCor = new javax.swing.JComboBox();
         cCategoriaAtiva = new javax.swing.JCheckBox();
         Salvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -84,16 +82,6 @@ public class CategoriaView extends javax.swing.JFrame
             }
         });
 
-        Cor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Cor.setText("Cor");
-
-        cCor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cCor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cCorActionPerformed(evt);
-            }
-        });
-
         cCategoriaAtiva.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cCategoriaAtiva.setText("Ativa");
         cCategoriaAtiva.addActionListener(new java.awt.event.ActionListener() {
@@ -115,14 +103,14 @@ public class CategoriaView extends javax.swing.JFrame
 
             },
             new String [] {
-                "Código", "Descrição", "Tipo", "Cor", "Ativa"
+                "Código", "Descrição", "Tipo", "Ativa"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -166,6 +154,23 @@ public class CategoriaView extends javax.swing.JFrame
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 425, Short.MAX_VALUE)
+                        .addComponent(estado))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cDescricao)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Tipo)
+                                .addGap(71, 71, 71))
+                            .addComponent(cEscolhaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(cCategoriaAtiva)))
+                .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -173,37 +178,19 @@ public class CategoriaView extends javax.swing.JFrame
                         .addComponent(Descricao))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Alterar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(Excluir))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Alterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Excluir))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cDescricao, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Tipo)
-                                    .addComponent(cEscolhaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Cor)
-                                    .addComponent(cCor, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(66, 66, 66)
-                                .addComponent(cCategoriaAtiva))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(estado)
-                            .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(20, 20, 20))
+                                .addGap(352, 352, 352)
+                                .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,22 +198,17 @@ public class CategoriaView extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(estado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Descricao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(Descricao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Tipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cEscolhaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cCategoriaAtiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Cor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cCor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cEscolhaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cCategoriaAtiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +220,7 @@ public class CategoriaView extends javax.swing.JFrame
                             .addComponent(Excluir))
                         .addGap(43, 43, 43))
                     .addComponent(Sair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/rsd/image/tag.png"))); // NOI18N
@@ -302,12 +284,12 @@ public class CategoriaView extends javax.swing.JFrame
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SalvarActionPerformed
     {//GEN-HEADEREND:event_SalvarActionPerformed
-       try {
+     try{
+        try {
             CategoriaModel categoria = new CategoriaModel(
                     vUsuCodigo,
                     cDescricao.getText(),
                     cEscolhaTipo.getSelectedIndex(),
-                    cCor.getSelectedIndex(),
                     cCategoriaAtiva.isSelected());
             if (estado.getText() == "Inserir"){
             if (CategoriaController.inserir(categoria, vUsuCodigo) == true) {
@@ -321,7 +303,10 @@ public class CategoriaView extends javax.swing.JFrame
         } catch (Exception ex) {
             Logger.getLogger(CategoriaView.class.getName()).log(Level.SEVERE, null, ex);
         }
-       estado.setText("Inserir");     
+     }finally{
+         limpa();
+     }  
+       
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SairActionPerformed
@@ -333,11 +318,6 @@ public class CategoriaView extends javax.swing.JFrame
     {//GEN-HEADEREND:event_cEscolhaTipoActionPerformed
 
     }//GEN-LAST:event_cEscolhaTipoActionPerformed
-
-    private void cCorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cCorActionPerformed
-    {//GEN-HEADEREND:event_cCorActionPerformed
-
-    }//GEN-LAST:event_cCorActionPerformed
 
     private void cCategoriaAtivaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cCategoriaAtivaActionPerformed
     {//GEN-HEADEREND:event_cCategoriaAtivaActionPerformed
@@ -361,7 +341,6 @@ public class CategoriaView extends javax.swing.JFrame
         rs2.next();
         cDescricao.setText(rs2.getString("DescCategoria"));
         cEscolhaTipo.setSelectedIndex(rs2.getInt("TipoCategoria"));
-        cCor.setSelectedIndex(rs2.getInt("Cor"));
         cCategoriaAtiva.setSelected(rs2.getBoolean("CategoriaAtiva"));
          
         stmt2.close();
@@ -394,6 +373,7 @@ public class CategoriaView extends javax.swing.JFrame
     }//GEN-LAST:event_cDescricaoActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        limpa();
         preencheGrid();
     }//GEN-LAST:event_formComponentShown
 
@@ -444,18 +424,24 @@ private void preencheGrid()
            Logger.getLogger(MovimentacoesView.class.getName()).log(Level.SEVERE, null, ex);
      } 
           
-    }  
+    } 
+
+    public void limpa(){
+      cCategoriaAtiva.setSelected(true);
+      cDescricao.setText("");        
+      cEscolhaTipo.setSelectedIndex(0);
+      estado.setText("Inserir");
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Alterar;
     private javax.swing.JLabel Categoria;
-    private javax.swing.JLabel Cor;
     private javax.swing.JLabel Descricao;
     private javax.swing.JButton Excluir;
     private javax.swing.JButton Sair;
     private javax.swing.JButton Salvar;
     private javax.swing.JLabel Tipo;
     private javax.swing.JCheckBox cCategoriaAtiva;
-    private javax.swing.JComboBox cCor;
     private javax.swing.JTextField cDescricao;
     private javax.swing.JComboBox cEscolhaTipo;
     private javax.swing.JLabel estado;

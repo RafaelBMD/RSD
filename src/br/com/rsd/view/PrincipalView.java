@@ -167,16 +167,16 @@ public class PrincipalView extends javax.swing.JFrame
 
     private void MovimentacoesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_MovimentacoesActionPerformed
     {//GEN-HEADEREND:event_MovimentacoesActionPerformed
-       
+        try{
        try {
         Connection con;
         con = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
-        
-           PreparedStatement stmt = con.prepareStatement("select count(*) from Conta where usuCodigo = " + vUsuCodigo);
+       
+           PreparedStatement stmt = con.prepareStatement("select * from Conta where usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs = stmt.executeQuery();
             // itera no ResultSet
-            if (rs.getInt("count") == 0) {
+            if (!rs.next()) {
              JOptionPane.showMessageDialog(this, "Favor Cadastrar pelo menos uma Conta para esse Usuário!");
              return;
             }
@@ -185,12 +185,13 @@ public class PrincipalView extends javax.swing.JFrame
        Connection con2;
         con2 = DriverManager.getConnection("jdbc:mysql://localhost/rsd", "root", "");
         
-           PreparedStatement stmt2 = con2.prepareStatement("select count(*) from Conta where usuCodigo = " + vUsuCodigo);
+           PreparedStatement stmt2 = con2.prepareStatement("select * from Categoria where usuCodigo = " + vUsuCodigo);
             // executa um select
             ResultSet rs2 = stmt2.executeQuery();
             // itera no ResultSet
-            if (rs2.getInt("count") == 0) {
+            if (!rs2.next()) {
              JOptionPane.showMessageDialog(this, "Favor Cadastrar pelo menos uma Categoria para esse Usuário!");
+                return;
             }
         stmt2.close();
         con2.close();
@@ -200,9 +201,6 @@ public class PrincipalView extends javax.swing.JFrame
            return;
      } 
         
-
-
-        try{
         switch (this.Movimentacoes.getSelectedIndex())
         { 
             case 1:
